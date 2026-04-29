@@ -3,4 +3,7 @@
 target/
 dbt_packages/
 logs/
+<<<<<<< HEAD
 dbt_internal_packages/
+=======
+>>>>>>> deb4a9bfea68b289a5adf1baa8c85755fb28b13a
