@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: bronze
-    database: civica_project
+    database: pharm_project
     tables:
       - name: brnz_doctors
         columns:
@@ -13,7 +13,7 @@ sources:
           - name: doct_per_10000
             data_type: float
 
-      - name: brnz_drug
+      - name: brnz_drug_pre
         columns:
           - name: app_numb
             data_type: varchar
@@ -21,11 +21,14 @@ sources:
             data_type: varchar
           - name: drug_name
             data_type: varchar
+          - name: mkting_status
+            data_type: varchar
           - name: disease
             data_type: varchar
           - name: price_per_dose
             data_type: float
-
+          - name: updated_at
+            data_type: timestamp_ntz
 
       - name: brnz_infct_dis
         columns:
