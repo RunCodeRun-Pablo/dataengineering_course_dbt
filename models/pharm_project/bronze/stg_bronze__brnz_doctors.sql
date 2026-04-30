@@ -9,9 +9,9 @@ source as (
 renamed as (
 
     select
-        country,
-        period,
-        doct_per_10000
+        country::VARCHAR(256),
+        period::VARCHAR(256),
+        doct_per_10000::FLOAT4
 
     from source
 
