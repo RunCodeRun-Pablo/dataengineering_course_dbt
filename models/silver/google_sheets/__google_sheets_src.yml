@@ -1,29 +1,29 @@
 version: 2
 
 sources:
-
-  - name: google_sheets # name of the source 
-    schema: google_sheets # this is the schema our raw data lives in
-    database: BRONZE_DB_49 # this is the name of our database
-
-    quoting:
-      database: false
-      schema: false
-      identifier: false
-
-    #config:
-      #freshness:
-        #warn_after: {count: 24, period: hour}
-        #error_after: {count: 48, period: hour}
-
+  - name: google_sheets
+    database: bronze_db_49
     tables:
-
       - name: budget
-        config:
-          loaded_at_field: fivetran_synced
         columns:
           - name: row_nmb
-          - name: product_id
+            data_type: varchar
           - name: quantity
+            data_type: varchar
           - name: month
+            data_type: timestamp_ntz
+          - name: product_id
+            data_type: varchar
           - name: fivetran_synced
+            data_type: varchar
+
+      - name: users
+        columns:
+          - name: nombre
+            data_type: varchar
+          - name: dni
+            data_type: varchar
+          - name: email
+            data_type: varchar
+          - name: fecha_alta_sistema
+            data_type: timestamp_ntz
