@@ -1,0 +1,91 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: pharm_project
+    tables:
+      - name: brnz_doctors
+        columns:
+          - name: country
+            data_type: varchar
+          - name: period
+            data_type: varchar
+          - name: doct_per_10000
+            data_type: float
+
+      - name: brnz_drug_pre
+        columns:
+          - name: app_numb
+            data_type: varchar
+          - name: sponsor_name
+            data_type: varchar
+          - name: drug_name
+            data_type: varchar
+          - name: mkting_status
+            data_type: varchar
+          - name: disease
+            data_type: varchar
+          - name: price_per_dose
+            data_type: float
+          - name: updated_at
+            data_type: timestamp_ntz
+
+      - name: brnz_infct_dis
+        columns:
+          - name: country
+            data_type: varchar
+          - name: period
+            data_type: varchar
+          - name: sex
+            data_type: varchar
+          - name: inc_resp
+            data_type: float
+          - name: inc_hiv
+            data_type: float
+          - name: inc_ets
+            data_type: float
+          - name: inc_hep
+            data_type: float
+          - name: inc_tub
+            data_type: float
+          - name: total_inc
+            data_type: float
+
+      - name: brnz_noninfct_dis
+        columns:
+          - name: country
+            data_type: varchar
+          - name: period
+            data_type: varchar
+          - name: sex
+            data_type: varchar
+          - name: total_prob
+            data_type: float
+          - name: prob_cancer
+            data_type: float
+          - name: prob_card
+            data_type: float
+          - name: prob_resp
+            data_type: float
+          - name: prob_diab
+            data_type: float
+
+      - name: brnz_pharmacists
+        columns:
+          - name: country
+            data_type: varchar
+          - name: period
+            data_type: varchar
+          - name: pharm_per_10000
+            data_type: float
+
+      - name: brnz_uhc_coverage
+        columns:
+          - name: country
+            data_type: varchar
+          - name: period
+            data_type: varchar
+          - name: uhc_index
+            data_type: number
+          - name: uhc_class
+            data_type: varchar

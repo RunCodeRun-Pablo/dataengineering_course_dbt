@@ -1,0 +1,100 @@
+version: 2
+
+sources:
+
+  - name: postgres # name of the source 
+    schema: postgres_docs # this is the schema our raw data lives in
+    database: BRONZE_DB_49 # this is the name of our database
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    #config:
+      #freshness:
+        #warn_after: {count: 24, period: hour}
+        #error_after: {count: 48, period: hour}
+
+    tables:
+
+      - name: addresses
+        config:
+          loaded_at_field: fivetran_sync
+        columns:
+          - name: address
+          - name: address_id
+          - name: country
+          - name: fivetran_del
+          - name: fivetran_sync
+          - name: state
+          - name: zipcode
+
+      - name: orderitems
+        config:
+          loaded_at_field: fivetran_sync
+        columns:
+          - name: fivetran_del
+          - name: fivetran_sync
+          - name: order_id
+          - name: product_id
+          - name: quantity
+
+      - name: orders
+        config:
+          loaded_at_field: fivetran_sync
+        columns:
+          - name: created_at
+          - name: delivered_at
+          - name: estimated_delivery_at
+          - name: fivetran_del
+          - name: fivetran_sync
+          - name: order_cost
+          - name: order_id
+          - name: order_total
+          - name: promo_id
+          - name: status
+          - name: shipping_service
+          - name: shipping_cost
+          - name: tracking_id
+          - name: user_id
+
+      - name: products
+        config:
+          loaded_at_field: fivetran_sync
+        columns:
+          - name: fivetran_del
+          - name: fivetran_sync
+          - name: inventory
+          - name: name
+          - name: price
+          - name: product_id
+
+      - name: promos
+        config:
+          loaded_at_field: fivetran_sync
+        columns:
+          - name: discount
+          - name: fivetran_del
+          - name: fivetran_sync
+          - name: promo_id
+          - name: status
+
+      - name: users
+        config:
+          loaded_at_field: fivetran_sync
+        columns:
+          - name: address_id
+          - name: created_at
+          - name: email
+          - name: first_name
+          - name: fivetran_del
+          - name: fivetran_sync
+          - name: last_name
+          - name: phone_number
+          - name: total_orders
+          - name: updated_at
+          - name: user_id
+
+
+      
