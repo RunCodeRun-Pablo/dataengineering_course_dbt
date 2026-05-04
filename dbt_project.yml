@@ -49,4 +49,14 @@ models:
         +schema: gold
         +materialized: table
 
+snapshots:
+  dataengineering_course_dbt:
+
+    pharm_project:
+      +target_database: pharm_project
+      +target_schema: snapshots
+      +strategy: timestamp
+      +unique_key: app_numb
+      +updated_at: updated_at
+
 
