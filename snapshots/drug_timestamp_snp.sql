@@ -1,4 +1,12 @@
-{% snapshot users_check_snp%}
+{% snapshot drug_timestamp_snp%}
+
+{{config(
+    target_database='pharm_project',
+    target_schema='snapshots',
+    unique_key='app_numb',
+    strategy='timestamp',
+    updated_at='updated_at'
+)}}
 
 SELECT
     app_numb,

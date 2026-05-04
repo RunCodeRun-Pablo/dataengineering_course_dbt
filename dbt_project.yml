@@ -28,11 +28,18 @@ models:
   dataengineering_course_dbt:
 
     pharm_project:
-      brnz_int_slv:
+      brnz_int_slv_app:
         +database: pharm_project
         +schema: brnz_int_slv
         +materialized: incremental
         +incremental_strategy: append
+    
+      brnz_int_slv_mrg:
+        +database: pharm_project
+        +schema: brnz_int_slv
+        +materialized: incremental
+        +incremental_strategy: merge
+        +unique_key: app_numb
 
       silver:
         +database: pharm_project
@@ -49,14 +56,5 @@ models:
         +schema: gold
         +materialized: table
 
-snapshots:
-  dataengineering_course_dbt:
-
-    pharm_project:
-      +target_database: pharm_project
-      +target_schema: snapshots
-      +strategy: timestamp
-      +unique_key: app_numb
-      +updated_at: updated_at
 
 
