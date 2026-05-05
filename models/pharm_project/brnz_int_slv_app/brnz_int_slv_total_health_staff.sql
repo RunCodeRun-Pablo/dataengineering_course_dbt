@@ -33,7 +33,7 @@ total_health_staff as (
 
 total_health_staff_clean AS (
     SELECT
-        period::VARCHAR(256) AS period,
+        TO_TIMESTAMP_NTZ(TO_DATE(period::STRING, 'YYYY')) AS period,
         country::VARCHAR(256) AS country,
         CAST(CASE
             WHEN doct_per_10000 IS NOT NULL THEN doct_per_10000

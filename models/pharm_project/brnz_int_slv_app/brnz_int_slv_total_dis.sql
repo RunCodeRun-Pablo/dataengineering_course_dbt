@@ -21,7 +21,7 @@ total_diseases as (
 
     SELECT 
         n.country::VARCHAR(256) AS country,
-        n.period::VARCHAR(256) AS period,
+        TO_TIMESTAMP_NTZ(TO_DATE(n.period::STRING, 'YYYY')) AS period,
         n.sex::VARCHAR(256) AS sex,
         n.total_prob::FLOAT4 AS total_prob,
         n.prob_cancer::FLOAT4 AS prob_cancer,
