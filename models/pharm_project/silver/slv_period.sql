@@ -16,19 +16,6 @@ src3 AS (
 
 ),
 
-src4 AS (
-
-    SELECT * FROM {{ref('brnz_int_slv_drug')}}
-
-),
-
-drug_periods AS (
-
-    SELECT DISTINCT 
-        updated_at AS period
-    FROM src4
-
-),
 
 disease_periods AS (
 
@@ -61,8 +48,6 @@ joint_periods AS (
     SELECT * FROM health_periods
     UNION
     SELECT * FROM uhc_periods
-    UNION
-    SELECT * FROM drug_periods
 
 ),
 
