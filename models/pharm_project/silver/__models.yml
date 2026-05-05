@@ -19,20 +19,14 @@ models:
     columns:
       - name: id_country
         data_type: varchar
-        data_tests:
-          - unique
         description: "country identifier"
 
       - name: id_period
         data_type: varchar
-        data_tests:
-          - unique
         description: "period (year) identifier"
 
       - name: id_sex
         data_type: varchar
-        data_tests:
-          - unique
         description: "sex identifier"
 
       - name: metric_type
@@ -41,8 +35,6 @@ models:
 
       - name: id_disease
         data_type: varchar
-        data_tests:
-          - unique
         description: "disease identifier"
 
       - name: value
