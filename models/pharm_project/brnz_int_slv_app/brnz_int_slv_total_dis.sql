@@ -22,18 +22,18 @@ total_diseases as (
     SELECT 
         n.country::VARCHAR(256) AS country,
         TO_TIMESTAMP_NTZ(TO_DATE(n.period::STRING, 'YYYY')) AS period,
-        n.sex::VARCHAR(256) AS sex,
-        n.total_prob::FLOAT4 AS total_prob,
-        n.prob_cancer::FLOAT4 AS prob_cancer,
-        n.prob_card::FLOAT4 AS prob_card,
-        n.prob_diab::FLOAT4 AS prob_diab,
-        n.prob_resp::FLOAT4 AS prob_resp,
-        i.total_inc::FLOAT4 AS total_inc,
-        i.inc_ets::FLOAT4 AS inc_ets,
-        i.inc_hep::FLOAT4 AS inc_hep,
-        i.inc_hiv::FLOAT4 AS inc_hiv,
-        i.inc_resp::FLOAT4 AS inc_resp,
-        i.inc_tub::FLOAT4 AS inc_tub
+        LOWER(n.sex::VARCHAR(256)) AS sex,
+        COALESCE(n.total_prob,0)::FLOAT4 AS total_prob,
+        COALESCE(n.prob_cancer,0)::FLOAT4 AS prob_cancer,
+        COALESCE(n.prob_card,0)::FLOAT4 AS prob_card,
+        COALESCE(n.prob_diab,0)::FLOAT4 AS prob_diab,
+        COALESCE(n.prob_resp,0)::FLOAT4 AS prob_resp,
+        COALESCE(i.total_inc,0)::FLOAT4 AS total_inc,
+        COALESCE(i.inc_ets,0)::FLOAT4 AS inc_ets,
+        COALESCE(i.inc_hep,0)::FLOAT4 AS inc_hep,
+        COALESCE(i.inc_hiv,0)::FLOAT4 AS inc_hiv,
+        COALESCE(i.inc_resp,0)::FLOAT4 AS inc_resp,
+        COALESCE(i.inc_tub,0)::FLOAT4 AS inc_tub
     FROM source2 n
     LEFT JOIN source1 i
         ON n.country = i.country

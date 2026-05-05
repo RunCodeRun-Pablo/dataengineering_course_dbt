@@ -12,7 +12,7 @@ source_dis AS (
 
 drug_diseases AS (
     SELECT DISTINCT
-        disease AS id_disease
+        disease
     FROM source_drug
 ),
 
@@ -45,19 +45,19 @@ metrics_renamed AS (
             WHEN id_disease ILIKE 'prob_diab'   THEN 'diabetes'
             WHEN id_disease ILIKE 'prob_resp'   THEN 'chronic respiratory'
             WHEN id_disease ILIKE 'total_inc'   THEN 'total infc'
-            WHEN id_disease ILIKE 'inc_ets'     THEN 'ETS'
+            WHEN id_disease ILIKE 'inc_ets'     THEN 'ets'
             WHEN id_disease ILIKE 'inc_hep'     THEN 'hepatitis'
-            WHEN id_disease ILIKE 'inc_hiv'     THEN 'HIV'
+            WHEN id_disease ILIKE 'inc_hiv'     THEN 'hiv'
             WHEN id_disease ILIKE 'inc_resp'    THEN 'infc respiratory'
             WHEN id_disease ILIKE 'inc_tub'     THEN 'tuberculosis'
-        END AS id_disease
+        END AS disease
     FROM unpivoted_diseases
 ),
 
 all_diseases AS (
-    SELECT id_disease FROM drug_diseases
+    SELECT disease FROM drug_diseases
     UNION
-    SELECT id_disease FROM metrics_renamed
+    SELECT disease FROM metrics_renamed
 )
 
 SELECT * FROM all_diseases

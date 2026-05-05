@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: brnz_int_slv_drug
+    description: "drug application list updated each week"
+    columns:
+      - name: app_numb
+        data_type: varchar
+        description: "application id"
+
+      - name: sponsor_name
+        data_type: varchar
+        description: "name of the sponsor associated to drug application"
+
+      - name: drug_name
+        data_type: varchar
+        description: "name of the drug associated to drug application"
+
+      - name: disease
+        data_type: varchar
+        data_tests:
+        - accepted_values:
+            arguments:
+              values: ['diabetes', 'tuberculosis', 'hepatitis', 'other', 'ets', 'chronic respiratory', 'hiv', 'infc respiratory', 'cancer', 'cardiovascular' ]
+        description: "intended use of drug associated to drug application"
+
+      - name: price_per_dose
+        data_type: float
+        data_tests:
+          - not_null
+        description: "price per dose of the drug application"
+
+      - name: updated_at
+        data_type: timestamp_ntz
+        data_tests:
+          - not_null
+        description: "date when application data was incorporated to the table"
