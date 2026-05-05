@@ -12,7 +12,7 @@ renamed as (
 
     select
         country::VARCHAR(256) AS country,
-        period::VARCHAR(256) AS period,
+        TO_TIMESTAMP_NTZ(TO_DATE(period::STRING, 'YYYY')) AS period,
         uhc_index::VARCHAR(256) AS uhc_index,
         uhc_class::VARCHAR(256) AS uhc_class
 

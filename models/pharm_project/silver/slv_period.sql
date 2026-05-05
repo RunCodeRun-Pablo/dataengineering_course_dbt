@@ -16,6 +16,20 @@ src3 AS (
 
 ),
 
+src4 AS (
+
+    SELECT * FROM {{ref('brnz_int_slv_drug')}}
+
+),
+
+drug_periods AS (
+
+    SELECT DISTINCT 
+        updated_at AS period
+    FROM src4
+
+),
+
 disease_periods AS (
 
     SELECT DISTINCT
@@ -47,6 +61,8 @@ joint_periods AS (
     SELECT * FROM health_periods
     UNION
     SELECT * FROM uhc_periods
+    UNION
+    SELECT * FROM drug_periods
 
 ),
 
@@ -54,7 +70,10 @@ hashed_joint_periods AS (
 
     SELECT
         {{dbt_utils.generate_surrogate_key(['period'])}} AS id_period,
-        period AS desc_period
+        period AS desc_period,
+        DATE_PART('year', period)::INT AS desc_year,
+        DATE_PART('month', period)::INT AS desc_month,
+        DATE_PART('day', period)::INT AS desc_day
     FROM joint_periods
 )
 
