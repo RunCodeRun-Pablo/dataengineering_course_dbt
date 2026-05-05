@@ -78,7 +78,7 @@ final_type_disease_list AS (
 
     SELECT
         {{dbt_utils.generate_surrogate_key(['id_type_disease'])}} AS id_type_disease,
-        id_type_disease AS desc_disease
+        id_type_disease AS desc_type_disease
     FROM type_disease_list
 )
 

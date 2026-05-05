@@ -18,7 +18,7 @@ slv_drug_name_dis AS (
 slv_drug_name AS (SELECT
 
     {{dbt_utils.generate_surrogate_key(['drug_name'])}} AS id_drug_name,
-    drug_name
+    drug_name AS desc_drug_name
 
 FROM slv_drug_name_dis)
 

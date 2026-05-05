@@ -18,7 +18,7 @@ slv_sponsor_dis AS (
 slv_sponsor AS (SELECT
 
     {{dbt_utils.generate_surrogate_key(['sponsor_name'])}} AS id_sponsor,
-    sponsor_name
+    sponsor_name AS desc_sponsor
 
 FROM slv_sponsor_dis)
 
