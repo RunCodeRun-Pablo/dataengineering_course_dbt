@@ -48,8 +48,6 @@ models:
     columns:
       - name: id_type_disease
         data_type: varchar
-        data_tests:
-          - unique
         description: "type of disease identifier"
 
       - name: id_disease
@@ -65,21 +63,6 @@ models:
               arguments:
                 values: ['diabetes', 'tuberculosis', 'hepatitis', 'other', 'ets', 'chronic respiratory', 'hiv', 'infc respiratory', 'cancer', 'cardiovascular', 'total infc', 'total noninfc']
         description: "disease description"
-
-  - name: slv_drug_disease
-    description: "intermediate table to associate each drug application to a disease"
-    columns:
-      - name: id_app_numb
-        data_type: varchar
-        data_tests:
-          - unique
-        description: "drug FDA application identifier"
-
-      - name: id_disease
-        data_type: varchar
-        data_tests:
-          - unique
-        description: "disease identifier"
 
   - name: slv_drug_name
     description: "table with drugs' names"
@@ -105,21 +88,19 @@ models:
 
       - name: app_numb
         data_type: varchar
-        data_tests:
-          - unique
         description: "application number"
 
       - name: id_sponsor
         data_type: varchar
-        data_tests:
-          - unique
         description: "sponsor identifier"
 
       - name: id_drug_name
         data_type: varchar
-        data_tests:
-          - unique
         description: "drug name identifier"
+
+      - name: id_disease
+        data_type: varchar
+        description: "specific FDA application disease intended use"
 
       - name: price_per_dose
         data_type: float
@@ -131,21 +112,15 @@ models:
     description: "number of either doctors or pharmacists per country and year"
     columns:
       - name: id_medical_staff
-        data_type: varchar
-        data_tests:
-          - unique        
+        data_type: varchar       
         description: "medical staff identifier"
 
       - name: id_country
         data_type: varchar
-        data_tests:
-          - unique
         description: "country identifier"
 
       - name: id_period
         data_type: varchar
-        data_tests:
-          - unique
         description: "period (year) identifier"
 
       - name: staff_per_10000
@@ -261,20 +236,14 @@ models:
     columns:
       - name: uhc_class_id
         data_type: varchar
-        data_tests:
-          - unique
         description: ""
 
       - name: id_country
         data_type: varchar
-        data_tests:
-          - unique
         description: ""
 
       - name: id_period
         data_type: varchar
-        data_tests:
-          - unique
         description: ""
 
       - name: uhc_index
