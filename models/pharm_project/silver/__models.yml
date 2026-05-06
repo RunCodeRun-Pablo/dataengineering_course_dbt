@@ -212,6 +212,10 @@ models:
 
       - name: desc_type_disease
         data_type: varchar
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['infectious disease', 'non infectious disease', 'other']
         description: "type of disease description"
 
   - name: slv_uhc_class
