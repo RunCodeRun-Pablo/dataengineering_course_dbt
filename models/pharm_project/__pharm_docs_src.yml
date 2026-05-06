@@ -14,6 +14,11 @@ sources:
             data_type: float
 
       - name: brnz_drug_pre
+        config: 
+          freshness:
+            warn_after: {count: 7, period: day}
+            error_after: {count: 10, period: day}
+          loaded_at_field: updated_at
         columns:
           - name: app_numb
             data_type: varchar
