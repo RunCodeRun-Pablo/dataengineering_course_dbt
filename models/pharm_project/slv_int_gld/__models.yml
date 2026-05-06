@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: slv_int_gld_pre_fct_health
+    description: "intermediate table to avoid excesive calculus for gold"
+    columns:
+      - name: id_period
+        data_type: varchar
+        description: "period identifier"
+
+      - name: id_country
+        data_type: varchar
+        description: "country identifier"
+
+      - name: uhc_class_id
+        data_type: varchar
+        description: "id of the uhc class"
+
+      - name: uhc_index
+        data_type: number
+        description: "number indicating health system quality"
+
+      - name: staff_per_10000
+        data_type: float
+        data_tests:
+          - not_null
+        description: "number of medical/pharmacists per 10000 habitants"
