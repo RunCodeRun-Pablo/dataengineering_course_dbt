@@ -39,7 +39,7 @@ models:
         +schema: brnz_int_slv
         +materialized: incremental
         +incremental_strategy: merge
-        +unique_key: app_numb
+        +unique_key: ['app_numb', 'drug_name']
 
       silver:
         +database: pharm_project

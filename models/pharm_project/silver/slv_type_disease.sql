@@ -9,8 +9,8 @@ type_disease_list AS (
 
     SELECT DISTINCT
         CASE
-            WHEN LOWER(id_disease) IN ('tuberculosis','infc respiratory','total infc','ets','hiv','hepatitis') THEN 'infectious disease'
-            WHEN LOWER(id_disease) IN ('diabetes','chronic respiratory','cancer','cardiovascular','total noninfc') THEN 'non infectious disease'
+            WHEN LOWER(disease) IN ('tuberculosis','infc respiratory','total infc','ets','hiv','hepatitis') THEN 'infectious disease'
+            WHEN LOWER(disease) IN ('diabetes','chronic respiratory','cancer','cardiovascular','total noninfc') THEN 'non infectious disease'
             ELSE 'other'
         END AS id_type_disease
     FROM source1

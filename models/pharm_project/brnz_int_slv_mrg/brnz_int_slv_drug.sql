@@ -21,7 +21,7 @@ renamed as (
         app_numb::VARCHAR(256)      AS app_numb,
         sponsor_name::VARCHAR(256)  AS sponsor_name,
         drug_name::VARCHAR(256)     AS drug_name,
-        disease::VARCHAR(256)       AS disease,
+        LOWER(disease::VARCHAR(256))       AS disease,
         price_per_dose::FLOAT4      AS price_per_dose,
         updated_at::TIMESTAMP_NTZ   AS updated_at
 
