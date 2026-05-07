@@ -148,7 +148,7 @@ models:
         description: ""
 
   - name: gld_fct_drug
-    description: ""
+    description: "Helps in calculating which disease has less treatments available and which company would get more benefit from a specific disease"
     columns:
       - name: id_disease
         data_type: varchar
@@ -162,19 +162,19 @@ models:
         data_type: float
         data_tests:
           - not_null
-        description: ""
+        description: "num of treatments available grouped by disease and sponsor"
 
       - name: avg_price_per_dose
         data_type: float
         data_tests:
           - not_null
-        description: ""
+        description: "average price per dose grouped by disease and sponsor"
 
       - name: estimated_revenue_index
         data_type: float
         data_tests:
           - not_null
-        description: ""
+        description: "calculated through multiplying num_treatments and avg_price_per_dose grouped by disease and sponsor"
 
   - name: gld_fct_health
     description: ""
