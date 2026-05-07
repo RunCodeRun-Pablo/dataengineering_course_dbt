@@ -33,7 +33,7 @@ max_period AS (
 
 UHC_max_period AS(
     SELECT
-        u.uhc_class_id,
+        u.id_uhc_class,
         u.id_country,
         u.uhc_index
     FROM ref2 u
@@ -55,7 +55,7 @@ complete_health_data AS (
     SELECT
         m.id_period,
         m.id_country,
-        u.uhc_class_id,
+        u.id_uhc_class,
         u.uhc_index,
         m.staff_per_10000
     FROM total_medical_staff m

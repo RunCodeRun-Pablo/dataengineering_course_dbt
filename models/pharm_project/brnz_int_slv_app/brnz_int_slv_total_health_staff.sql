@@ -4,7 +4,8 @@ source1 as (
 
     select * from {{ source('bronze', 'brnz_doctors') }}
     {% if is_incremental() %}
-        WHERE (country,period) NOT IN (SELECT DISTINCT country, period FROM {{this}})
+        WHERE (LOWER(TRIM(country::VARCHAR(256))),
+        TO_TIMESTAMP_NTZ(TO_DATE(period::STRING, 'YYYY'))) NOT IN (SELECT DISTINCT country, period FROM {{this}})
     {% endif %}
 ),
 
@@ -12,7 +13,8 @@ source2 as (
     
     select * from {{ source('bronze','brnz_pharmacists') }}
     {% if is_incremental() %}
-        WHERE (country,period) NOT IN (SELECT DISTINCT country, period FROM {{this}})
+        WHERE (LOWER(TRIM(country::VARCHAR(256))),
+        TO_TIMESTAMP_NTZ(TO_DATE(period::STRING, 'YYYY'))) NOT IN (SELECT DISTINCT country, period FROM {{this}})
     {% endif %}
 
 ),
@@ -34,7 +36,7 @@ total_health_staff as (
 total_health_staff_clean AS (
     SELECT
         TO_TIMESTAMP_NTZ(TO_DATE(period::STRING, 'YYYY')) AS period,
-        country::VARCHAR(256) AS country,
+        LOWER(TRIM(country::VARCHAR(256))) AS country,
         CAST(CASE
             WHEN doct_per_10000 IS NOT NULL THEN doct_per_10000
             ELSE 0

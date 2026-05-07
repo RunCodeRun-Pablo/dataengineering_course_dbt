@@ -4,7 +4,9 @@ source1 as (
 
     select * from {{ source('bronze', 'brnz_infct_dis') }}
     {% if is_incremental() %}
-        WHERE (country,period,sex) NOT IN (SELECT DISTINCT country, period, sex FROM {{this}})
+        WHERE (LOWER(TRIM(country::VARCHAR(256))),
+        TO_TIMESTAMP_NTZ(TO_DATE(period::STRING, 'YYYY'))),
+        LOWER(sex::VARCHAR(256)) NOT IN (SELECT DISTINCT country, period FROM {{this}})
     {% endif %}
 
 ),
@@ -13,14 +15,16 @@ source2 as (
 
     select * from {{ source('bronze', 'brnz_noninfct_dis') }}
     {% if is_incremental() %}
-        WHERE (country,period,sex) NOT IN (SELECT DISTINCT country, period, sex FROM {{this}})
+        WHERE (LOWER(TRIM(country::VARCHAR(256))),
+        TO_TIMESTAMP_NTZ(TO_DATE(period::STRING, 'YYYY'))),
+        LOWER(sex::VARCHAR(256)) NOT IN (SELECT DISTINCT country, period FROM {{this}})
     {% endif %}
 ),
 
 total_diseases as (
 
     SELECT 
-        n.country::VARCHAR(256) AS country,
+        LOWER(TRIM(n.country::VARCHAR(256))) AS country,
         TO_TIMESTAMP_NTZ(TO_DATE(n.period::STRING, 'YYYY')) AS period,
         LOWER(n.sex::VARCHAR(256)) AS sex,
         COALESCE(n.total_prob,0)::FLOAT4 AS total_prob,

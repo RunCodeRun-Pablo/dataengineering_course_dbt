@@ -15,7 +15,7 @@ cleaned_ref AS (
 cleaned_ref_id AS (
 
     SELECT
-        {{dbt_utils.generate_surrogate_key(['uhc_class'])}} AS uhc_class_id,
+        {{dbt_utils.generate_surrogate_key(['uhc_class'])}} AS id_uhc_class,
         uhc_class AS desc_uhc_class
     FROM cleaned_ref
 )
