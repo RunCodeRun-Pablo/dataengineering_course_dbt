@@ -29,7 +29,7 @@ joint_data AS (
         ON m.id_disease = dis.id_disease
     LEFT JOIN ref3 s
         ON m.id_sex = s.id_sex
-    WHERE s.desc_sex = 'both sexes'
+    WHERE s.desc_sex = 'both sexes' AND dis.desc_disease NOT IN ('total noninfc', 'total infc')
 )
 
 SELECT * FROM joint_data

@@ -56,22 +56,6 @@ models:
         data_type: number
         description: ""
 
-  - name: gld_dim_sex
-    description: "sex dimension"
-    columns:
-      - name: id_sex
-        data_type: varchar
-        data_tests:
-          - unique
-        description: ""
-
-      - name: desc_sex
-        data_type: varchar
-        data_tests:
-          - accepted_values:
-              arguments:
-                values: ['male', 'female', 'both sexes']
-        description: ""
 
   - name: gld_dim_sponsor
     description: "sponsor dimension"
@@ -129,10 +113,6 @@ models:
         data_type: varchar
         description: ""
 
-      - name: id_sex
-        data_type: varchar
-        description: ""
-
       - name: id_type_disease
         data_type: varchar
         description: ""
@@ -146,6 +126,18 @@ models:
         data_tests:
           - not_null
         description: ""
+
+      - name: avg_hist_value
+        data_type: integer
+        data_tests:
+          - not_null
+        description: "KPI, average disease value along all the years for each country"
+
+      - name: country_disease_rank
+        data_type: integer
+        data_tests:
+          - not_null
+        description: "KPI, each disease within each country and each year ranked to see which are the top ones"
 
   - name: gld_fct_drug
     description: "Helps in calculating which disease has less treatments available and which company would get more benefit from a specific disease"
