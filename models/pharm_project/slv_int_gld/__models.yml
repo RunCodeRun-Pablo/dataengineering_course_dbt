@@ -27,3 +27,28 @@ models:
         data_tests:
           - not_null
         description: "number of medical/pharmacists per 10000 habitants"
+
+  - name: slv_int_gld_pre_fct_disease
+    description: ""
+    columns:
+      - name: id_country
+        data_type: varchar
+        description: ""
+
+      - name: id_period
+        data_type: varchar
+        description: ""
+
+      - name: id_type_disease
+        data_type: varchar
+        description: ""
+
+      - name: id_disease
+        data_type: varchar
+        description: ""
+
+      - name: value
+        data_type: float
+        data_tests:
+          - not_null
+        description: ""

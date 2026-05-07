@@ -49,9 +49,9 @@ total_dis AS (
             WHEN id_disease ILIKE 'prob_diab' THEN 'diabetes'
             WHEN id_disease ILIKE 'prob_resp' THEN 'chronic respiratory'
             WHEN id_disease ILIKE 'total_inc' THEN 'total infc'
-            WHEN id_disease ILIKE 'inc_ets' THEN 'ETS'
+            WHEN id_disease ILIKE 'inc_ets' THEN 'ets'
             WHEN id_disease ILIKE 'inc_hep' THEN 'hepatitis'
-            WHEN id_disease ILIKE 'inc_hiv' THEN 'HIV'
+            WHEN id_disease ILIKE 'inc_hiv' THEN 'hiv'
             WHEN id_disease ILIKE 'inc_resp' THEN 'infc respiratory'
             WHEN id_disease ILIKE 'inc_tub' THEN 'tuberculosis'
         END AS id_disease,
