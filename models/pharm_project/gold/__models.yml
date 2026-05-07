@@ -31,19 +31,6 @@ models:
                 values: ['diabetes', 'tuberculosis', 'hepatitis', 'other', 'ets', 'chronic respiratory', 'hiv', 'infc respiratory', 'cancer', 'cardiovascular', 'total infc', 'total noninfc']
         description: ""
 
-  - name: gld_dim_drug_name
-    description: "drug name dimension"
-    columns:
-      - name: id_drug_name
-        data_type: varchar
-        data_tests:
-          - unique
-        description: ""
-
-      - name: desc_drug_name
-        data_type: varchar
-        description: ""
-
   - name: gld_dim_period
     description: "period dimension"
     columns:
@@ -161,43 +148,53 @@ models:
         description: ""
 
   - name: gld_fct_drug
-    description: ""
+    description: "Helps in calculating which disease has less treatments available and which company would get more benefit from a specific disease"
     columns:
-      - name: id_sponsor
-        data_type: varchar
-        description: ""
-
-      - name: id_drug_name
-        data_type: varchar
-        description: ""
-
       - name: id_disease
         data_type: varchar
         description: ""
 
-      - name: price_per_dose
+      - name: id_sponsor
+        data_type: varchar
+        description: ""
+
+      - name: num_treatments
         data_type: float
         data_tests:
           - not_null
-        description: ""
+        description: "num of treatments available grouped by disease and sponsor"
+
+      - name: avg_price_per_dose
+        data_type: float
+        data_tests:
+          - not_null
+        description: "average price per dose grouped by disease and sponsor"
+
+      - name: estimated_revenue_index
+        data_type: float
+        data_tests:
+          - not_null
+        description: "calculated through multiplying num_treatments and avg_price_per_dose grouped by disease and sponsor"
 
   - name: gld_fct_health
     description: ""
     columns:
-      - name: id_period
-        data_type: varchar
-        description: ""
-
       - name: id_country
         data_type: varchar
+        data_tests:
+          - not_null
+        description: ""
+
+      - name: id_period
+        data_type: varchar
+        data_tests:
+          - not_null
         description: ""
 
       - name: id_uhc_class
         data_type: varchar
-        description: ""
-
-      - name: uhc_index
-        data_type: number
+        data_tests:
+          - not_null
         description: ""
 
       - name: staff_per_10000
@@ -205,3 +202,21 @@ models:
         data_tests:
           - not_null
         description: ""
+
+      - name: uhc_index
+        data_type: number
+        data_tests:
+          - not_null
+        description: ""
+
+      - name: clinical_trial_score
+        data_type: float
+        data_tests:
+          - not_null
+        description: ""
+
+      - name: country_rank
+        data_type: float
+        description: ""
+
+      

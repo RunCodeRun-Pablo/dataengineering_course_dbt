@@ -128,7 +128,7 @@ models:
         description: "period per year"
 
       - name: uhc_index
-        data_type: 
+        data_type: integer
         data_tests:
           - not_null
           - dbt_utils.accepted_range:

@@ -1,27 +1,20 @@
-WITH ref1 AS (
+WITH ref AS (
 
-    SELECT * FROM {{ref('slv_disease_metrics')}}
-
-),
-
-ref2 AS (
-
-    SELECT * FROM {{ref('slv_disease')}}
+    SELECT * FROM {{ref('slv_int_gld_pre_fct_disease')}}
 
 ),
 
-gld_data AS (
 
-    SELECT 
-        m.id_country,
-        m.id_period,
-        m.id_sex,
-        dis.id_type_disease,
-        m.id_disease,
-        value
-    FROM ref1 m
-    LEFT JOIN ref2 dis
-    ON m.id_disease = dis.id_disease
+kpi AS (
+
+    SELECT
+        id_country,
+        id_period,
+        id_type_disease,
+        id_disease,
+        RANK() OVER(
+            PARTITION BY id_period
+            ORDER BY value DESC
+        )
+    FROM ref
 )
-
-SELECT * FROM gld_data

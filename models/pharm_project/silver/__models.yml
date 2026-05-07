@@ -221,7 +221,7 @@ models:
   - name: slv_uhc_class
     description: "uhc class according to uhc index"
     columns:
-      - name: uhc_class_id
+      - name: id_uhc_class
         data_type: varchar
         data_tests:
           - unique
@@ -238,7 +238,7 @@ models:
   - name: slv_uhc_index
     description: ""
     columns:
-      - name: uhc_class_id
+      - name: id_uhc_class
         data_type: varchar
         description: ""
 
