@@ -31,19 +31,6 @@ models:
                 values: ['diabetes', 'tuberculosis', 'hepatitis', 'other', 'ets', 'chronic respiratory', 'hiv', 'infc respiratory', 'cancer', 'cardiovascular', 'total infc', 'total noninfc']
         description: ""
 
-  - name: gld_dim_drug_name
-    description: "drug name dimension"
-    columns:
-      - name: id_drug_name
-        data_type: varchar
-        data_tests:
-          - unique
-        description: ""
-
-      - name: desc_drug_name
-        data_type: varchar
-        description: ""
-
   - name: gld_dim_period
     description: "period dimension"
     columns:
@@ -163,19 +150,27 @@ models:
   - name: gld_fct_drug
     description: ""
     columns:
-      - name: id_sponsor
-        data_type: varchar
-        description: ""
-
-      - name: id_drug_name
-        data_type: varchar
-        description: ""
-
       - name: id_disease
         data_type: varchar
         description: ""
 
-      - name: price_per_dose
+      - name: id_sponsor
+        data_type: varchar
+        description: ""
+
+      - name: num_treatments
+        data_type: float
+        data_tests:
+          - not_null
+        description: ""
+
+      - name: avg_price_per_dose
+        data_type: float
+        data_tests:
+          - not_null
+        description: ""
+
+      - name: estimated_revenue_index
         data_type: float
         data_tests:
           - not_null
