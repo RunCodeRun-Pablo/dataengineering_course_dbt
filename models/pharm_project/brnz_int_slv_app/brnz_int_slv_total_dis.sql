@@ -5,8 +5,7 @@ source1 as (
     select * from {{ source('bronze', 'brnz_infct_dis') }}
     {% if is_incremental() %}
         WHERE (LOWER(TRIM(country::VARCHAR(256))),
-        TO_TIMESTAMP_NTZ(TO_DATE(period::STRING, 'YYYY'))),
-        LOWER(sex::VARCHAR(256)) NOT IN (SELECT DISTINCT country, period FROM {{this}})
+        TO_TIMESTAMP_NTZ(TO_DATE(period::STRING, 'YYYY'))) NOT IN (SELECT DISTINCT country, period FROM {{this}})
     {% endif %}
 
 ),
@@ -16,8 +15,7 @@ source2 as (
     select * from {{ source('bronze', 'brnz_noninfct_dis') }}
     {% if is_incremental() %}
         WHERE (LOWER(TRIM(country::VARCHAR(256))),
-        TO_TIMESTAMP_NTZ(TO_DATE(period::STRING, 'YYYY'))),
-        LOWER(sex::VARCHAR(256)) NOT IN (SELECT DISTINCT country, period FROM {{this}})
+        TO_TIMESTAMP_NTZ(TO_DATE(period::STRING, 'YYYY'))) NOT IN (SELECT DISTINCT country, period FROM {{this}})
     {% endif %}
 ),
 
