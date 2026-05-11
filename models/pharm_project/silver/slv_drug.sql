@@ -9,7 +9,7 @@ source as (
 slv_drug AS (
     
     SELECT
-        {{dbt_utils.generate_surrogate_key(['app_numb', 'drug_name'])}} AS id_app_numb,
+        id_app_numb,
         app_numb,
         {{dbt_utils.generate_surrogate_key(['sponsor_name'])}} AS id_sponsor,
         {{dbt_utils.generate_surrogate_key(['drug_name'])}} AS id_drug_name,
