@@ -3,7 +3,7 @@
 with
 
 source_drug AS (
-    SELECT * FROM {{ ref('brnz_int_slv_drug') }}
+    SELECT * FROM {{ ref('drug_snp') }}
 ),
 
 source_dis AS (
