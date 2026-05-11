@@ -7,7 +7,7 @@ WITH ref AS (
 gld_data AS (
 
     SELECT
-        uhc_class_id,
+        id_uhc_class,
         desc_uhc_class
     FROM ref
 
