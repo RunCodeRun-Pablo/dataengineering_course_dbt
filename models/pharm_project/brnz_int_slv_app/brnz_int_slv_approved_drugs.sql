@@ -4,7 +4,7 @@ WITH ref AS (
 
 ),
 
-approved drugs AS (
+approved_drugs AS (
     SELECT 
     *
     FROM ref
