@@ -53,7 +53,7 @@ models:
         +materialized: incremental
         +incremental_strategy: append
 
-  silver:
+    silver:
       disease:
         +database: dev_silver_pharm
         +schema: disease
@@ -74,7 +74,7 @@ models:
         +schema: shared
         +materialized: view
 
-  gold:
+    gold:
       disease:
         +database: dev_gold_pharm
         +schema: disease
