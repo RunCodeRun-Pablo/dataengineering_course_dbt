@@ -1,3 +1,5 @@
+{{config(materialized='view')}}
+
 WITH ref AS (
 
     SELECT * FROM {{ref('drug_snp')}}

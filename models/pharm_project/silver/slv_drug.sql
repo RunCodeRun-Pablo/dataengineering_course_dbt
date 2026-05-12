@@ -14,7 +14,11 @@ slv_drug AS (
         {{dbt_utils.generate_surrogate_key(['sponsor_name'])}} AS id_sponsor,
         {{dbt_utils.generate_surrogate_key(['drug_name'])}} AS id_drug_name,
         {{dbt_utils.generate_surrogate_key(['disease'])}} AS id_disease,
-        price_per_dose
+        price_per_dose,
+        dbt_scd_id,
+        dbt_updated_at,
+        dbt_valid_from,
+        dbt_valid_to
     FROM source
 
 )
