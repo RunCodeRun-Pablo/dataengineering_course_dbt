@@ -1,0 +1,77 @@
+version: 2
+
+models:
+  - name: slv_drug_name
+    description: "table with drugs' names"
+    columns:
+      - name: id_drug_name
+        data_type: varchar
+        data_tests:
+          - unique
+        description: "drug name identifier"
+
+      - name: desc_drug_name
+        data_type: varchar
+        description: "description of drug name"
+
+  - name: slv_drug
+    description: "table including prices per drug and applications"
+    columns:
+      - name: id_app_numb
+        data_type: varchar
+        data_tests:
+          - not_null
+        description: "application identifier"
+
+      - name: app_numb
+        data_type: varchar
+        description: "application number"
+
+      - name: id_sponsor
+        data_type: varchar
+        description: "sponsor identifier"
+
+      - name: id_drug_name
+        data_type: varchar
+        description: "drug name identifier"
+
+      - name: id_disease
+        data_type: varchar
+        description: "specific FDA application disease intended use"
+
+      - name: price_per_dose
+        data_type: float
+        data_tests:
+          - not_null
+        description: "price per drug dose"
+
+      - name: dbt_scd_id
+        data_type: varchar
+        data_tests:
+          - unique
+        description: ""
+
+      - name: dbt_updated_at
+        data_type: date
+        description: ""
+
+      - name: dbt_valid_from
+        data_type: date
+        description: ""
+
+      - name: dbt_valid_to
+        data_type: date
+        description: ""
+
+  - name: slv_sponsor
+    description: ""
+    columns:
+      - name: id_sponsor
+        data_type: varchar
+        data_tests:
+          - unique
+        description: "sponsor identifier"
+
+      - name: desc_sponsor
+        data_type: varchar
+        description: "sponsor description"

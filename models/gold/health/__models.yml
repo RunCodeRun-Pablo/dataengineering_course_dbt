@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: dim_uhc_class
+    description: ""
+    columns:
+      - name: uhc_class_id
+        data_type: varchar
+        data_tests:
+          - unique
+        description: ""
+
+      - name: desc_uhc_class
+        data_type: varchar
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['INTERMEDIATE', 'HIGH', 'WEAK']
+        description: ""
+
+  - name: fct_health
+    description: ""
+    columns:
+      - name: id_country
+        data_type: varchar
+        data_tests:
+          - not_null
+        description: ""
+
+      - name: id_period
+        data_type: varchar
+        data_tests:
+          - not_null
+        description: ""
+
+      - name: id_uhc_class
+        data_type: varchar
+        data_tests:
+          - not_null
+        description: ""
+
+      - name: staff_per_10000
+        data_type: float
+        data_tests:
+          - not_null
+        description: ""
+
+      - name: uhc_index
+        data_type: number
+        data_tests:
+          - not_null
+        description: ""
+
+      - name: clinical_trial_score
+        data_type: float
+        data_tests:
+          - not_null
+        description: ""
+
+      - name: country_rank
+        data_type: float
+        description: ""
+
+
+  

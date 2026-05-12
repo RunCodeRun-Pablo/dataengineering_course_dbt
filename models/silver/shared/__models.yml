@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: slv_country
+    description: "countries table"
+    columns:
+      - name: id_country
+        data_type: varchar
+        data_tests:
+          - unique
+        description: "country identifier"
+
+      - name: desc_country
+        data_type: varchar
+        description: "country description"
+
+  - name: slv_period
+    description: "periods (per year) table"
+    columns:
+      - name: id_period
+        data_type: varchar
+        data_tests:
+          - unique
+        description: "period identifier"
+
+      - name: desc_period
+        data_type: timestamp_ntz
+        description: "period description in timestamp format"
+
+      - name: desc_year
+        data_type: number
+        description: "period description in year format"
+
+      - name: desc_month
+        data_type: number
+        description: "period description in month format"
+
+      - name: desc_day
+        data_type: number
+        description: "period description in day format"
+
+  

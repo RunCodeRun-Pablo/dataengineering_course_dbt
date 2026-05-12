@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: slv_disease_metrics
+    description: "disease metrics (incidence or probability of death) per country, year and sex"
+    columns:
+      - name: id_country
+        data_type: varchar
+        description: "country identifier"
+
+      - name: id_period
+        data_type: varchar
+        description: "period (year) identifier"
+
+      - name: id_sex
+        data_type: varchar
+        description: "sex identifier"
+
+      - name: metric_type
+        data_type: varchar
+        description: "either probability or incidence"
+
+      - name: id_disease
+        data_type: varchar
+        description: "disease identifier"
+
+      - name: value
+        data_type: float
+        data_tests:
+          - not_null
+        description: "value of probability or incidence per disease"
+
+  - name: slv_disease
+    description: "list of diseases"
+    columns:
+      - name: id_type_disease
+        data_type: varchar
+        description: "type of disease identifier"
+
+      - name: id_disease
+        data_type: varchar
+        data_tests:
+          - unique
+        description: "disease identifier"
+
+      - name: desc_disease
+        data_type: varchar
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['diabetes', 'tuberculosis', 'hepatitis', 'other', 'ets', 'chronic respiratory', 'hiv', 'infc respiratory', 'cancer', 'cardiovascular', 'total infc', 'total noninfc']
+        description: "disease description"
+
+  - name: slv_type_disease
+    description: "type of disease table"
+    columns:
+      - name: id_type_disease
+        data_type: varchar
+        data_tests:
+          - unique
+        description: "type of disease identifier"
+
+      - name: desc_type_disease
+        data_type: varchar
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['infectious disease', 'non infectious disease', 'other']
+        description: "type of disease description"
+

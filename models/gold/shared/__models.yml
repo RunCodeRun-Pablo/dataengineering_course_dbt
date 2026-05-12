@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: dim_country
+    description: "country dimension"
+    columns:
+      - name: id_country
+        data_type: varchar
+        data_tests:
+          - unique
+        description: ""
+
+      - name: desc_country
+        data_type: varchar
+        description: ""
+
+  - name: dim_period
+    description: "period dimension"
+    columns:
+      - name: id_period
+        data_type: varchar
+        data_tests:
+          - unique
+        description: ""
+
+      - name: desc_period
+        data_type: timestamp_ntz
+        description: ""
+
+      - name: desc_year
+        data_type: number
+        description: ""
+
+      - name: desc_month
+        data_type: number
+        description: ""
+
+      - name: desc_day
+        data_type: number
+        description: ""
+
+
+  

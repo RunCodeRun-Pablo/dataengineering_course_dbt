@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: int_approved_drugs
+    description: "list of drugs coming from snapshot which are approved"
+    columns:
+      - name: id_app_numb
+        data_type: varchar
+        data_tests:
+          - not_null
+        description: "FDA application id"
+
+      - name: app_numb
+        data_type: varchar
+        data_tests:
+          - not_null
+        description: "FDA application number"
+
+      - name: sponsor_name
+        data_type: varchar
+        data_tests:
+          - not_null
+        description: "name of the company who did the application"
+
+      - name: drug_name
+        data_type: varchar
+        data_tests:
+          - not_null
+        description: "name of the drug included in the application"
+
+      - name: disease
+        data_type: varchar
+        data_tests:
+          - not_null
+        description: "disease for which the drug is inteded to be used"
+
+      - name: mkting_status
+        data_type: varchar
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['over-the-counter','prescription']
+        description: "marketing state of the approved drug"
+
+      - name: price_per_dose
+        data_type: varchar
+        data_tests:
+          - not_null
+        description: "price per drug dose"
+
+      - name: dbt_scd_id
+        data_type: varchar
+        data_tests:
+          - unique
+          - not_null
+        description: "snapshot id"
+      
+      - name: dbt_updated_at
+        data_type: date
+        data_tests:
+          - not_null
+        description: "snapshot parameter"
+      
+      - name: dbt_valid_from
+        data_type: date
+        description: "snapshot parameter"
+      
+      - name: dbt_valid_to
+        data_type: date
+        description: "snapshot parameter"
