@@ -59,7 +59,7 @@ complete_health_data AS (
         u.uhc_index,
         m.staff_per_10000
     FROM total_medical_staff m
-    LEFT JOIN UHC_max_period u
+    INNER JOIN UHC_max_period u
     ON m.id_country = u.id_country
 )
 
