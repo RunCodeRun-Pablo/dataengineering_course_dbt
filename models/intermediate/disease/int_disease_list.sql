@@ -5,7 +5,7 @@
 with
 
 source_drug AS (
-    SELECT * FROM {{ ref('drug_snp') }}
+    SELECT * FROM {{ source('bronze_data','bronze_drug_pre') }}
 ),
 
 source_dis AS (

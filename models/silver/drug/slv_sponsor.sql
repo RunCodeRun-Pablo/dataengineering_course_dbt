@@ -2,8 +2,7 @@ with
     
 source as (
 
-    select * from {{ ref('drug_snp') }}
-    WHERE dbt_valid_to IS NULL
+    select * from {{ source('bronze_data','brnz_drug_pre') }}
 ),
 
 slv_sponsor_dis AS (

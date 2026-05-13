@@ -1,6 +1,6 @@
 WITH ref AS (
 
-    SELECT * FROM {{ ref('slv_drug') }}
+    SELECT * FROM {{ ref('drug_snp') }}
 
 ),
 
