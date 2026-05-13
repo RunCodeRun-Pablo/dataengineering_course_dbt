@@ -1,8 +1,8 @@
 version: 2
 
 sources:
-  - name: bronze
-    database: pharm_project
+  - name: bronze_data
+    database: dev_bronze_pharm
     tables:
       - name: brnz_doctors
         columns:
@@ -32,8 +32,8 @@ sources:
             data_type: varchar
           - name: price_per_dose
             data_type: float
-          - name: updated_at
-            data_type: timestamp_ntz
+          - name: loaded_at
+            data_type: timestamp_ltz
 
       - name: brnz_infct_dis
         columns:

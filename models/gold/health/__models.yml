@@ -4,7 +4,7 @@ models:
   - name: dim_uhc_class
     description: ""
     columns:
-      - name: uhc_class_id
+      - name: id_uhc_class
         data_type: varchar
         data_tests:
           - unique

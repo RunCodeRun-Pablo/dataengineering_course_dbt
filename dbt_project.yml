@@ -96,4 +96,9 @@ models:
         +materialized: view
 
 
+snapshots:
+  dataengineering_course_dbt:
+
+    +database: dev_intermediate_pharm
+    +schema: snapshot
 

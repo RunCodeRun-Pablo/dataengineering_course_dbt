@@ -2,7 +2,7 @@ with
 
 source1 as (
 
-    select * from {{ source('bronze', 'brnz_infct_dis') }}
+    select * from {{ source('bronze_data', 'brnz_infct_dis') }}
     {% if is_incremental() %}
         WHERE (LOWER(TRIM(country::VARCHAR(256))),
         TO_TIMESTAMP_NTZ(TO_DATE(period::STRING, 'YYYY'))) NOT IN (SELECT DISTINCT country, period FROM {{this}})
@@ -12,7 +12,7 @@ source1 as (
 
 source2 as (
 
-    select * from {{ source('bronze', 'brnz_noninfct_dis') }}
+    select * from {{ source('bronze_data', 'brnz_noninfct_dis') }}
     {% if is_incremental() %}
         WHERE (LOWER(TRIM(country::VARCHAR(256))),
         TO_TIMESTAMP_NTZ(TO_DATE(period::STRING, 'YYYY'))) NOT IN (SELECT DISTINCT country, period FROM {{this}})
