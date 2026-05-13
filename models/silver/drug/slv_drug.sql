@@ -4,7 +4,9 @@ source as (
 
     select * from {{ ref('drug_snp') }}
     {% if is_incremental() %}
-        WHERE dbt_updated_at > (SELECT MAX(dbt_updated_at) FROM {{ this }})
+        WHERE dbt_scd_id NOT IN (
+            SELECT dbt_scd_id FROM {{ this }}
+        )
     {% endif %}
     
 ),
