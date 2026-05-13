@@ -3,7 +3,10 @@ with
 source as (
 
     select * from {{ ref('drug_snp') }}
-
+    {% if is_incremental() %}
+        WHERE dbt_updated_at > (SELECT MAX(dbt_updated_at) FROM {{ this }})
+    {% endif %}
+    
 ),
 
 slv_drug AS (

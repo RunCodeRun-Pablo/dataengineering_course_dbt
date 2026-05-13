@@ -3,7 +3,7 @@ with
 source as (
 
     select * from {{ ref('drug_snp') }}
-
+    WHERE dbt_valid_to IS NULL
 ),
 
 slv_sponsor_dis AS (
@@ -11,6 +11,12 @@ slv_sponsor_dis AS (
     SELECT DISTINCT
     sponsor_name
     FROM source
+
+    {% if is_incremental() %}
+        WHERE sponsor_name NOT IN (
+        SELECT desc_sponsor FROM {{ this }}
+        )
+    {% endif %}
 
 ),
 

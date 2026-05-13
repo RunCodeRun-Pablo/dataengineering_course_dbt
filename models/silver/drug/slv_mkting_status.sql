@@ -3,7 +3,7 @@ with
 source as (
 
     select * from {{ ref('drug_snp') }}
-
+    WHERE dbt_valid_to IS NULL
 ),
 
 slv_status_dis AS (
@@ -11,7 +11,11 @@ slv_status_dis AS (
     SELECT DISTINCT
     mkting_status
     FROM source
-
+    {% if is_incremental() %}
+        WHERE mkting_status NOT IN (
+        SELECT desc_mkting_status FROM {{ this }}
+        )
+    {% endif %}
 ),
 
 

@@ -3,7 +3,7 @@ with
 source as (
 
     select * from {{ ref('drug_snp') }}
-
+    WHERE dbt_valid_to IS NULL
 ),
 
 slv_drug_name_dis AS (
@@ -11,7 +11,11 @@ slv_drug_name_dis AS (
     SELECT DISTINCT
     drug_name
     FROM source
-
+    {% if is_incremental() %}
+    WHERE drug_name NOT IN (
+    SELECT desc_drug_name FROM {{ this }}
+        )
+    {% endif %}
 ),
 
 

@@ -28,12 +28,6 @@ models:
   dataengineering_course_dbt:
 
     intermediate:
-      drug:
-        +database: dev_intermediate_pharm
-        +schema: drug
-        +materialized: incremental
-        +incremental_strategy: merge
-        +unique_key: ['app_numb', 'drug_name']
     
       disease:
         +database: dev_intermediate_pharm
@@ -44,12 +38,6 @@ models:
       health:
         +database: dev_intermediate_pharm
         +schema: health
-        +materialized: incremental
-        +incremental_strategy: append
-
-      pre_gold: 
-        +database: dev_intermediate_pharm
-        +schema: pre_gold
         +materialized: incremental
         +incremental_strategy: append
 
@@ -57,43 +45,44 @@ models:
       disease:
         +database: dev_silver_pharm
         +schema: disease
-        +materialized: view
+        +materialized: table
     
       drug:
         +database: dev_silver_pharm
         +schema: drug
-        +materialized: view
+        +materialized: incremental
+        +incremental_strategy: append
         
       health:
         +database: dev_silver_pharm
         +schema: health
-        +materialized: view
+        +materialized: table
 
       shared: 
         +database: dev_silver_pharm
         +schema: shared
-        +materialized: view
+        +materialized: table
 
     gold:
       disease:
         +database: dev_gold_pharm
         +schema: disease
-        +materialized: view
+        +materialized: table
     
       drug:
         +database: dev_gold_pharm
         +schema: drug
-        +materialized: view
+        +materialized: table
         
       health:
         +database: dev_gold_pharm
         +schema: health
-        +materialized: view
+        +materialized: table
 
       shared: 
         +database: dev_gold_pharm
         +schema: shared
-        +materialized: view
+        +materialized: table
 
 
 snapshots:
