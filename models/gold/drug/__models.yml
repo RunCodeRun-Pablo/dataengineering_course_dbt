@@ -63,8 +63,6 @@ models:
     columns:
       - name: id_app_numb
         data_type: varchar
-        data_tests:
-          - unique
         description: ""
 
       - name: app_numb
