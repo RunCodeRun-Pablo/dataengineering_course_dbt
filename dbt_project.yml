@@ -84,6 +84,11 @@ models:
         +schema: shared
         +materialized: table
 
+      use_cases:
+        +database: dev_gold_pharm
+        +schema: use_cases
+        +materialized: view
+
 
 snapshots:
   dataengineering_course_dbt:
