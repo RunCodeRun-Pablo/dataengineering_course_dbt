@@ -27,34 +27,67 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   dataengineering_course_dbt:
 
-    pharm_project:
-      brnz_int_slv_app:
-        +database: pharm_project
-        +schema: brnz_int_slv
+    intermediate:
+    
+      disease:
+        +database: dev_intermediate_pharm
+        +schema: disease
         +materialized: incremental
         +incremental_strategy: append
-    
-      brnz_int_slv_mrg:
-        +database: pharm_project
-        +schema: brnz_int_slv
+        
+      health:
+        +database: dev_intermediate_pharm
+        +schema: health
         +materialized: incremental
-        +incremental_strategy: merge
-        +unique_key: ['app_numb', 'drug_name']
+        +incremental_strategy: append
 
-      silver:
-        +database: pharm_project
-        +schema: silver
-        +materialized: view
+    silver:
+      disease:
+        +database: dev_silver_pharm
+        +schema: disease
+        +materialized: table
+    
+      drug:
+        +database: dev_silver_pharm
+        +schema: drug
+        +materialized: incremental
+        +incremental_strategy: append
+        
+      health:
+        +database: dev_silver_pharm
+        +schema: health
+        +materialized: table
 
-      slv_int_gld: 
-        +database: pharm_project
-        +schema: slv_int_gld
-        +materialized: view
+      shared: 
+        +database: dev_silver_pharm
+        +schema: shared
+        +materialized: table
 
-      gold:
-        +database: pharm_project
-        +schema: gold
+    gold:
+      disease:
+        +database: dev_gold_pharm
+        +schema: disease
+        +materialized: table
+    
+      drug:
+        +database: dev_gold_pharm
+        +schema: drug
+        +materialized: table
+        
+      health:
+        +database: dev_gold_pharm
+        +schema: health
+        +materialized: table
+
+      shared: 
+        +database: dev_gold_pharm
+        +schema: shared
         +materialized: table
 
 
+snapshots:
+  dataengineering_course_dbt:
+
+    +database: dev_intermediate_pharm
+    +schema: snapshot
 

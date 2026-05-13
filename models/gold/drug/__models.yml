@@ -1,0 +1,89 @@
+version: 2
+
+models:
+  - name: dim_sponsor
+    description: "sponsor dimension"
+    columns:
+      - name: id_sponsor
+        data_type: varchar
+        data_tests:
+          - unique
+        description: ""
+
+      - name: desc_sponsor
+        data_type: varchar
+        description: ""
+        
+  - name: fct_drug
+    description: "Helps in calculating which disease has less treatments available and which company would get more benefit from a specific disease"
+    columns:
+      - name: id_disease
+        data_type: varchar
+        description: ""
+
+      - name: id_sponsor
+        data_type: varchar
+        description: ""
+
+      - name: num_treatments
+        data_type: float
+        data_tests:
+          - not_null
+        description: "num of treatments available grouped by disease and sponsor"
+
+      - name: avg_price_per_dose
+        data_type: float
+        data_tests:
+          - not_null
+        description: "average price per dose grouped by disease and sponsor"
+
+      - name: estimated_revenue_index
+        data_type: float
+        data_tests:
+          - not_null
+        description: "calculated through multiplying num_treatments and avg_price_per_dose grouped by disease and sponsor"
+
+  
+  - name: fct_status
+    description: "table to check applications whose status has changed since last update"
+    columns:
+      - name: id_app_numb
+        data_type: varchar
+        description: ""
+
+      - name: app_numb
+        data_type: varchar
+        description: ""
+
+      - name: sponsor_name
+        data_type: varchar
+        description: ""
+
+      - name: drug_name
+        data_type: varchar
+        description: ""
+
+      - name: disease
+        data_type: varchar
+        description: ""
+
+      - name: current_status
+        data_type: varchar
+        description: ""
+
+      - name: previous_status
+        data_type: varchar
+        description: ""
+
+      - name: valid_from
+        data_type: timestamp_ntz
+        description: ""
+
+      - name: valid_to
+        data_type: timestamp_ntz
+        description: ""
+
+      - name: row_status
+        data_type: varchar
+        description: ""
+      
