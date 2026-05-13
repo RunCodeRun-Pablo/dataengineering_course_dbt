@@ -5,7 +5,7 @@
 with
 
 source_drug AS (
-    SELECT * FROM {{ source('bronze_data','bronze_drug_pre') }}
+    SELECT * FROM {{ source('bronze_data','brnz_drug_pre') }}
 ),
 
 source_dis AS (
@@ -14,7 +14,7 @@ source_dis AS (
 
 drug_diseases AS (
     SELECT DISTINCT
-        disease
+        LOWER(disease) AS disease
     FROM source_drug
 ),
 

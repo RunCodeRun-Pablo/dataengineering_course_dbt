@@ -1,6 +1,6 @@
 {{config(
-    materialized='incremental'
-    incremental_strategy='merge'
+    materialized='incremental',
+    incremental_strategy='merge',
     unique_key='id_app_numb'
 )}}
 
