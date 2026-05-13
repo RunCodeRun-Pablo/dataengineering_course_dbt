@@ -6,10 +6,10 @@ source as (
 
 ),
 
-slv_sponsor_dis AS (
+slv_status_dis AS (
     
     SELECT DISTINCT
-    sponsor_name
+    mkting_status
     FROM source
 
 ),
@@ -17,9 +17,9 @@ slv_sponsor_dis AS (
 
 slv_sponsor AS (SELECT
 
-    {{dbt_utils.generate_surrogate_key(['sponsor_name'])}} AS id_sponsor,
-    sponsor_name AS desc_sponsor
+    {{dbt_utils.generate_surrogate_key(['mkting_status'])}} AS id_mkting_status,
+    mkting_status AS desc_mkting_status
 
-FROM slv_sponsor_dis)
+FROM slv_status_dis)
 
 SELECT * FROM slv_sponsor

@@ -2,7 +2,7 @@ with
     
 source as (
 
-    select * from {{ ref('int_approved_drugs') }}
+    select * from {{ ref('drug_snp') }}
 
 ),
 

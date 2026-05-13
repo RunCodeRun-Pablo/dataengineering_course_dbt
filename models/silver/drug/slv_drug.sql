@@ -2,7 +2,7 @@ with
     
 source as (
 
-    select * from {{ ref('int_approved_drugs') }}
+    select * from {{ ref('drug_snp') }}
 
 ),
 
@@ -14,6 +14,7 @@ slv_drug AS (
         {{dbt_utils.generate_surrogate_key(['sponsor_name'])}} AS id_sponsor,
         {{dbt_utils.generate_surrogate_key(['drug_name'])}} AS id_drug_name,
         {{dbt_utils.generate_surrogate_key(['disease'])}} AS id_disease,
+        {{dbt_utils.generate_surrogate_key(['mkting_status'])}} AS id_mkting_status,
         price_per_dose,
         dbt_scd_id,
         dbt_updated_at,

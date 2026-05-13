@@ -1,9 +1,7 @@
-{{config(materialized='view')}}
-
 with
 
 source_drug AS (
-    SELECT * FROM {{ ref('int_approved_drugs') }}
+    SELECT * FROM {{ ref('drug_snp') }}
 ),
 
 source_dis AS (

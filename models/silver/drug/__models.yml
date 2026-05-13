@@ -14,6 +14,24 @@ models:
         data_type: varchar
         description: "description of drug name"
 
+  - name: slv_mkting_status
+    description: "table with marketing status of the FDA applications"
+    columns:
+      - name: id_mkting_status
+        data_type: varchar
+        data_tests:
+          - unique
+        description: "drug name identifier"
+
+      - name: desc_mkting_status
+        data_type: varchar
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['prescription','over-the-counter','none (tentative approval)']
+        description: "description of drug name"
+
+
   - name: slv_drug
     description: "table including prices per drug and applications"
     columns:
@@ -38,6 +56,10 @@ models:
       - name: id_disease
         data_type: varchar
         description: "specific FDA application disease intended use"
+
+      - name: id_mkting_status
+        data_type: varchar
+        description: "current marketing status"
 
       - name: price_per_dose
         data_type: float

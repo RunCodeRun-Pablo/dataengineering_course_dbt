@@ -14,6 +14,19 @@ models:
         data_type: varchar
         description: ""
 
+  - name: dim_drug_name
+    description: "drug name dimension"
+    columns:
+      - name: id_drug_name
+        data_type: varchar
+        data_tests:
+          - unique
+        description: ""
+
+      - name: desc_drug_name
+        data_type: varchar
+        description: ""
+
   
   - name: fct_drug
     description: "Helps in calculating which disease has less treatments available and which company would get more benefit from a specific disease"
