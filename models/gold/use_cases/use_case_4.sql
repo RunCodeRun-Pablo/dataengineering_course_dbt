@@ -40,7 +40,7 @@ LEFT JOIN ref_country c
     ON f.id_country = c.id_country
 LEFT JOIN ref_period p
     ON f.id_period = p.id_period
-LEFT JOIN ref_fct_disease dis
+LEFT JOIN ref_disease dis
     ON f.id_disease = dis.id_disease
 LEFT JOIN ref_type_disease td
     ON f.id_type_disease = td.id_type_disease

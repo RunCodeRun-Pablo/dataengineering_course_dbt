@@ -84,7 +84,7 @@ treatments_available AS ( --total treatments for a specific disease
     FROM ref_drug
     GROUP BY id_disease
 
-)
+),
 
 diseases_w_less_treatments AS (SELECT
     dis.desc_disease,
