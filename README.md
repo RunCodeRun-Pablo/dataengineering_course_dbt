@@ -13,16 +13,18 @@ The idea of using this data is to answer the following questions:
 
 The project followed a medallion architecture. Bronze layer and update process was donde in snowflake using procedures (see files in folder 'bronze_snowflake').
   -  Pre-update process files are:
+
     -  FDA_drugs.csv
     -  infc_diseases.csv
     -  non_infc_diseases.csv
     -  medicalDoctors.csv
     -  pharmacists.csv
     -  uhcCoverage.csv
-  -Post-update process files have the same name but with the '_updated' sufix.
-  -stg_csv.sql is a file for creating appropriate stages and csv format in snowflake. Note that files should be uploaded manually to each stage before running procedures
-  -procedure_first_charge.sql is a file for the charge of the first files
-  -procedure_updated.sql is a file for updating the files
+     
+  -  Post-update process files have the same name but with the '_updated' sufix.
+  -  stg_csv.sql is a file for creating appropriate stages and csv format in snowflake. Note that files should be uploaded manually to each stage before running procedures
+  -  procedure_first_charge.sql is a file for the charge of the first files
+  -  procedure_updated.sql is a file for updating the files
 
 Rest of the project was done in dbt and can be found in the rest of the folders. 
   Important folders are:
