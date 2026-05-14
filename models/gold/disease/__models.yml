@@ -23,6 +23,8 @@ models:
     columns:
       - name: id_type_disease
         data_type: varchar
+        data_tests:
+          - unique
         description: ""
 
       - name: desc_type_disease
@@ -58,12 +60,6 @@ models:
         data_tests:
           - not_null
         description: ""
-
-      - name: avg_hist_value
-        data_type: integer
-        data_tests:
-          - not_null
-        description: "KPI, average disease value along all the years for each country"
 
       - name: country_disease_rank
         data_type: integer
