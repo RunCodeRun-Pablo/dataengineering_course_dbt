@@ -30,62 +30,62 @@ models:
     intermediate:
     
       disease:
-        +database: dev_intermediate_pharm
+        +database: "{{ env_var('DBT_ENVIRONMENTS')}}_intermediate_pharm"
         +schema: disease
         +materialized: incremental
         +incremental_strategy: append
         
       health:
-        +database: dev_intermediate_pharm
+        +database: "{{ env_var('DBT_ENVIRONMENTS')}}_intermediate_pharm"
         +schema: health
         +materialized: incremental
         +incremental_strategy: append
 
     silver:
       disease:
-        +database: dev_silver_pharm
+        +database: "{{ env_var('DBT_ENVIRONMENTS')}}_silver_pharm"
         +schema: disease
         +materialized: table
     
       drug:
-        +database: dev_silver_pharm
+        +database: "{{ env_var('DBT_ENVIRONMENTS')}}_silver_pharm"
         +schema: drug
         +materialized: incremental
         +incremental_strategy: append
         
       health:
-        +database: dev_silver_pharm
+        +database: "{{ env_var('DBT_ENVIRONMENTS')}}_silver_pharm"
         +schema: health
         +materialized: table
 
       shared: 
-        +database: dev_silver_pharm
+        +database: "{{ env_var('DBT_ENVIRONMENTS')}}_silver_pharm"
         +schema: shared
         +materialized: table
 
     gold:
       disease:
-        +database: dev_gold_pharm
+        +database: "{{ env_var('DBT_ENVIRONMENTS')}}_gold_pharm"
         +schema: disease
         +materialized: table
     
       drug:
-        +database: dev_gold_pharm
+        +database: "{{ env_var('DBT_ENVIRONMENTS')}}_gold_pharm"
         +schema: drug
         +materialized: table
         
       health:
-        +database: dev_gold_pharm
+        +database: "{{ env_var('DBT_ENVIRONMENTS')}}_gold_pharm"
         +schema: health
         +materialized: table
 
       shared: 
-        +database: dev_gold_pharm
+        +database: "{{ env_var('DBT_ENVIRONMENTS')}}_gold_pharm"
         +schema: shared
         +materialized: table
 
       use_cases:
-        +database: dev_gold_pharm
+        +database: "{{ env_var('DBT_ENVIRONMENTS')}}_gold_pharm"
         +schema: use_cases
         +materialized: view
 

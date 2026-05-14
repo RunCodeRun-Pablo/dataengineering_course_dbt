@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: bronze_data
-    database: dev_bronze_pharm
+    database: "{{ env_var('DBT_ENVIRONMENTS')}}_bronze_pharm"
     tables:
       - name: brnz_doctors
         columns:

@@ -1,4 +1,4 @@
-WITH ref_drug AS (
+WITH ref_status AS (
 
     SELECT * FROM {{ref("fct_status")}}
 ),
@@ -8,7 +8,7 @@ recently_approved AS (SELECT
     sponsor_name,
     drug_name,
     disease
-FROM gld_FCT_status
+FROM ref_status
 WHERE previous_status = 'none (tentative approval)'
 AND current_status IN ('prescription', 'over-the-counter')),
 

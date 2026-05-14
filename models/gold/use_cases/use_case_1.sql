@@ -20,4 +20,4 @@ GROUP BY dis.desc_disease
 ORDER BY total_treatments DESC)
 
 SELECT * FROM ranking_treatments
-WHERE desc_disease != 'other';
+WHERE desc_disease != 'other'
