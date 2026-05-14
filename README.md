@@ -28,11 +28,15 @@ Rest of the project was done in dbt and can be found in the rest of the folders.
   Important folders are:
     Snapshots, containing unique snapshot for tracking historic changes in FDA applications marketing status
     Models, containing:
-      - Intermediate: previous transformations and incrementals before arriving to silver layer
-      - Silver: normalized models before arriving to gold
-      - Gold: with distinct fct and dim tables
+    
+      -  Intermediate: previous transformations and incrementals before arriving to silver layer
+      -  Silver: normalized models before arriving to gold
+      -  Gold: with distinct fct and dim tables
+      
     Overall, within each folder data was grouped according to the origin table or tables:
-      - Health: tables comming from medicalDoctors.csv, pharmacists.csv and uhcCoverage.csv
-      - Drug: tables coming from FDA_drugs.csv
-      - Disease: tables coming from infc_diseases.csv and non_infc_diseases.csv
+    
+      -  Health: tables comming from medicalDoctors.csv, pharmacists.csv and uhcCoverage.csv
+      -  Drug: tables coming from FDA_drugs.csv
+      -  Disease: tables coming from infc_diseases.csv and non_infc_diseases.csv
+      
     More information about each model can be found in each of this folders within the corresponding __model.yml file
