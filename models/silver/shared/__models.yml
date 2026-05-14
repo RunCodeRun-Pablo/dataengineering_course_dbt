@@ -12,6 +12,8 @@ models:
 
       - name: desc_country
         data_type: varchar
+        data_tests:
+          - not_null
         description: "country description"
 
   - name: slv_period

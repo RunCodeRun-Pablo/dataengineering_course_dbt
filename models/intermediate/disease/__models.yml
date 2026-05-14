@@ -17,14 +17,20 @@ models:
     columns:
       - name: country
         data_type: varchar
+        data_tests:
+          - not_null
         description: "country"
 
       - name: period
         data_type: timestamp_ntz
+        data_tests:
+          - not_null
         description: "period in years"
 
       - name: sex
         data_type: varchar
+        data_tests:
+          - not_null
         description: "sex, either male, female or both"
 
       - name: total_prob

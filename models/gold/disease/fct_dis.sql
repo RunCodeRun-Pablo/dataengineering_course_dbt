@@ -41,11 +41,6 @@ kpi AS (
         id_type_disease,
         id_disease,
         value,
-
-        ROUND(AVG(value) OVER (
-            PARTITION BY id_country, id_disease
-        ), 2) AS avg_hist_value,
-
         RANK() OVER (
             PARTITION BY id_period, id_country
             ORDER BY value DESC
