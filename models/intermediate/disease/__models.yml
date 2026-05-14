@@ -1,0 +1,101 @@
+version: 2
+
+models:
+  - name: int_disease_list
+    description: "list of diseases to avoid CTE repetition in slv_disease and slv_type_disease"
+    columns:
+      - name: disease
+        data_type: varchar
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['diabetes', 'tuberculosis', 'hepatitis', 'other', 'ets', 'chronic respiratory', 'hiv', 'infc respiratory', 'cancer', 'cardiovascular', 'total infc', 'total noninfc']
+        description: "list of diseases"
+
+  - name: int_disease_metrics
+    description: "append incremental table that combines both infectious and non-infectious diseases per country and year"
+    columns:
+      - name: country
+        data_type: varchar
+        data_tests:
+          - not_null
+        description: "country"
+
+      - name: period
+        data_type: timestamp_ntz
+        data_tests:
+          - not_null
+        description: "period in years"
+
+      - name: sex
+        data_type: varchar
+        data_tests:
+          - not_null
+        description: "sex, either male, female or both"
+
+      - name: total_prob
+        data_type: float
+        data_tests:
+          - not_null
+        description: "prob of dying specific disease"
+
+      - name: prob_cancer
+        data_type: float
+        data_tests:
+          - not_null
+        description: "prob of dying specific disease"
+
+      - name: prob_card
+        data_type: float
+        data_tests:
+          - not_null
+        description: "prob of dying specific disease"
+
+      - name: prob_diab
+        data_type: float
+        data_tests:
+          - not_null
+        description: "prob of dying specific disease"
+
+      - name: prob_resp
+        data_type: float
+        data_tests:
+          - not_null
+        description: "prob of dying specific disease"
+
+      - name: total_inc
+        data_type: float
+        data_tests:
+          - not_null
+        description: "incidence of specific disease"
+
+      - name: inc_ets
+        data_type: float
+        data_tests:
+          - not_null
+        description: "incidence of specific disease"
+
+      - name: inc_hep
+        data_type: float
+        data_tests:
+          - not_null
+        description: "incidence of specific disease"
+
+      - name: inc_hiv
+        data_type: float
+        data_tests:
+          - not_null
+        description: "incidence of specific disease"
+
+      - name: inc_resp
+        data_type: float
+        data_tests:
+          - not_null
+        description: "incidence of specific disease"
+
+      - name: inc_tub
+        data_type: float
+        data_tests:
+          - not_null
+        description: "incidence of specific disease"
+

@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: dim_disease
+    description: "disease dimension"
+    columns:
+      - name: id_disease
+        data_type: varchar
+        data_tests:
+          - unique
+        description: ""
+
+      - name: desc_disease
+        data_type: varchar
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['diabetes', 'tuberculosis', 'hepatitis', 'other', 'ets', 'chronic respiratory', 'hiv', 'infc respiratory', 'cancer', 'cardiovascular', 'total infc', 'total noninfc']
+        description: ""
+
+  - name: dim_type_disease
+    description: "type disease"
+    columns:
+      - name: id_type_disease
+        data_type: varchar
+        data_tests:
+          - unique
+        description: ""
+
+      - name: desc_type_disease
+        data_type: varchar
+        data_tests:
+        - accepted_values:
+              arguments:
+                values: ['infectious disease', 'non infectious disease', 'other']
+        description: ""
+
+  
+  - name: fct_dis
+    description: ""
+    columns:
+      - name: id_country
+        data_type: varchar
+        description: ""
+
+      - name: id_period
+        data_type: varchar
+        description: ""
+
+      - name: id_type_disease
+        data_type: varchar
+        description: ""
+
+      - name: id_disease
+        data_type: varchar
+        description: ""
+
+      - name: value
+        data_type: float
+        data_tests:
+          - not_null
+        description: ""
+
+      - name: country_disease_rank
+        data_type: integer
+        data_tests:
+          - not_null
+        description: "KPI, each disease within each country and each year ranked to see which are the top ones"
+
+  

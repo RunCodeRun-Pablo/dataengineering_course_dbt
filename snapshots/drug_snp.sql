@@ -1,7 +1,7 @@
 {% snapshot drug_snp%}
 
 {{config(
-    target_database='pharm_project',
+    target_database='dev_intermediate_pharm',
     target_schema='snapshots',
     unique_key='id_app_numb',
     strategy='check',
@@ -16,7 +16,7 @@ SELECT
         LOWER(disease::VARCHAR(256))       AS disease,
         LOWER(mkting_status::VARCHAR(256)) AS mkting_status,
         price_per_dose::FLOAT4      AS price_per_dose
-FROM {{ source('bronze', 'brnz_drug_pre') }}
+FROM {{ source('bronze_data', 'brnz_drug_pre') }}
 WHERE LOWER(mkting_status) != 'discontinued'
 
 {% endsnapshot %}
