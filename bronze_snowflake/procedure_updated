@@ -1,0 +1,285 @@
+CREATE OR REPLACE PROCEDURE PHARM_PROJECT.BRONZE.LOAD_UPDATE_DATA()
+RETURNS VARCHAR
+LANGUAGE SQL
+EXECUTE AS OWNER
+AS '
+    BEGIN
+
+    
+    --FDA_drug table
+    CREATE OR REPLACE TABLE bronze.upd_brnz_drug_pre (
+    app_numb VARCHAR(256),
+    sponsor_name VARCHAR(256),
+    drug_name VARCHAR(256),
+    mkting_status VARCHAR(256),
+    disease VARCHAR(256),
+    price_per_dose FLOAT4);
+
+    COPY INTO bronze.upd_brnz_drug_pre
+    FROM (SELECT $1,$2,$3,$6,$7,$8
+    FROM ''@"PHARM_PROJECT"."BRONZE"."UPDATED_STG"/FDA_drugs_updated.csv'')
+    FILE_FORMAT = (FORMAT_NAME = ''bronze.csv_format'')
+    ;
+
+    MERGE INTO bronze.brnz_drug_pre p 
+    USING(
+        SELECT 
+            *
+        FROM bronze.upd_brnz_drug_pre
+    ) u ON p.app_numb = u.app_numb
+        AND p.drug_name = u.drug_name
+        WHEN MATCHED THEN UPDATE SET
+            p.app_numb = u.app_numb,
+            p.sponsor_name = u.sponsor_name,
+            p.drug_name = u.drug_name,
+            p.mkting_status = u.mkting_status,
+            p.disease = u.disease,
+            p.price_per_dose = u.price_per_dose
+        WHEN NOT MATCHED THEN INSERT (
+            app_numb,
+            sponsor_name,
+            drug_name,
+            mkting_status,
+            disease,
+            price_per_dose
+        )
+        VALUES (
+            u.app_numb,
+            u.sponsor_name,
+            u.drug_name,
+            u.mkting_status,
+            u.disease,
+            u.price_per_dose
+        );
+
+    --infc_diseases
+    CREATE OR REPLACE TABLE bronze.upd_brnz_infct_dis (
+    country VARCHAR(256),
+    period VARCHAR(256),
+    sex VARCHAR(256),
+    inc_resp FLOAT4,
+    inc_HIV FLOAT4,
+    inc_ETS FLOAT4,
+    inc_hep FLOAT4,
+    inc_tub FLOAT4,
+    total_inc FLOAT4
+    );
+
+    COPY INTO bronze.upd_brnz_infct_dis
+    FROM ''@"PHARM_PROJECT"."BRONZE"."UPDATED_STG"/infc_diseases_updated.csv''
+    FILE_FORMAT = (FORMAT_NAME = ''bronze.csv_format'');
+
+    MERGE INTO bronze.brnz_infct_dis p 
+    USING(
+        SELECT 
+            *
+        FROM bronze.upd_brnz_infct_dis
+    ) u ON p.country= u.country
+        AND p.period = u.period
+        AND p.sex = u.sex
+        WHEN MATCHED THEN UPDATE SET
+            p.country = u.country,
+            p.period = u.period,
+            p.sex = u.sex,
+            p.inc_resp = u.inc_resp,
+            p.inc_hiv = u.inc_hiv,
+            p.inc_ets = u.inc_ets,
+            p.inc_hep = u.inc_hep,
+            p.inc_tub = u.inc_tub,
+            p.total_inc = u.total_inc
+        WHEN NOT MATCHED THEN INSERT (
+            country,
+            period,
+            sex,
+            inc_resp,
+            inc_hiv,
+            inc_ets,
+            inc_hep,
+            inc_tub,
+            total_inc
+        )
+        VALUES (
+            u.country,
+            u.period,
+            u.sex,
+            u.inc_resp,
+            u.inc_hiv,
+            u.inc_ets,
+            u.inc_hep,
+            u.inc_tub,
+            u.total_inc
+        );
+
+        --noninfc diseases
+       CREATE OR REPLACE TABLE bronze.upd_brnz_noninfct_dis(
+            country VARCHAR(256),
+            period VARCHAR(256),
+            sex VARCHAR(256),
+            total_prob FLOAT4,
+            prob_cancer FLOAT4,
+            prob_card FLOAT4,
+            prob_resp FLOAT4,
+            prob_diab FLOAT4 
+        );
+
+        COPY INTO bronze.upd_brnz_noninfct_dis
+        FROM ''@"PHARM_PROJECT"."BRONZE"."UPDATED_STG"/non_infc_diseases_updated.csv''
+        FILE_FORMAT = (FORMAT_NAME = ''bronze.csv_format'');
+
+        MERGE INTO bronze.brnz_noninfct_dis p 
+    USING(
+        SELECT 
+            *
+        FROM bronze.upd_brnz_noninfct_dis
+    ) u ON p.country= u.country
+        AND p.period = u.period
+        AND p.sex = u.sex
+        WHEN MATCHED THEN UPDATE SET
+            p.country = u.country,
+            p.period = u.period,
+            p.sex = u.sex,
+            p.total_prob = u.total_prob,
+            p.prob_cancer = u.prob_cancer,
+            p.prob_card = u.prob_card,
+            p.prob_resp = u.prob_resp,
+            p.prob_diab = u.prob_diab        
+        WHEN NOT MATCHED THEN INSERT (
+            country,
+            period,
+            sex,
+            total_prob,
+            prob_cancer,
+            prob_card,
+            prob_resp,
+            prob_diab
+            
+        )
+        VALUES (
+            u.country,
+            u.period,
+            u.sex,
+            u.total_prob,
+            u.prob_cancer,
+            u.prob_card,
+            u.prob_resp,
+            u.prob_diab
+        );
+
+
+    --medical data
+    CREATE OR REPLACE TABLE bronze.upd_brnz_doctors (
+    country VARCHAR(256),
+    period VARCHAR(256),
+    doct_per_10000 FLOAT4
+);
+
+    COPY INTO bronze.upd_brnz_doctors
+    FROM (SELECT $1,$2,$4
+    FROM''@"PHARM_PROJECT"."BRONZE"."UPDATED_STG"/medicalDoctors_updated.csv'')
+    FILE_FORMAT = (FORMAT_NAME = ''bronze.csv_format'');
+
+
+    MERGE INTO bronze.brnz_doctors p 
+    USING(
+        SELECT 
+            *
+        FROM bronze.upd_brnz_doctors
+    ) u ON p.country= u.country
+        AND p.period = u.period
+        WHEN MATCHED THEN UPDATE SET
+            p.country = u.country,
+            p.period = u.period,
+            p.doct_per_10000 = u.doct_per_10000
+        WHEN NOT MATCHED THEN INSERT (
+            country,
+            period,
+            doct_per_10000
+        )
+        VALUES (
+            u.country,
+            u.period,
+            u.doct_per_10000
+        );
+
+
+    --pharmacists data
+    CREATE OR REPLACE TABLE bronze.upd_brnz_pharmacists (
+        country VARCHAR(256),
+        period VARCHAR(256),
+        pharm_per_10000 FLOAT4
+    );
+
+        COPY INTO bronze.upd_brnz_pharmacists
+    FROM (SELECT $1,$2,$4
+    FROM''@"PHARM_PROJECT"."BRONZE"."UPDATED_STG"/pharmacists_updated.csv'')
+    FILE_FORMAT = (FORMAT_NAME = ''bronze.csv_format'');
+
+     MERGE INTO bronze.brnz_pharmacists p 
+    USING(
+        SELECT 
+            *
+        FROM bronze.upd_brnz_pharmacists
+    ) u ON p.country= u.country
+        AND p.period = u.period
+        WHEN MATCHED THEN UPDATE SET
+            p.country = u.country,
+            p.period = u.period,
+            p.pharm_per_10000 = u.pharm_per_10000
+        WHEN NOT MATCHED THEN INSERT (
+            country,
+            period,
+            pharm_per_10000
+        )
+        VALUES (
+            u.country,
+            u.period,
+            u.pharm_per_10000
+        );
+
+    --uhc coverage
+    CREATE OR REPLACE TABLE bronze.upd_brnz_UHC_coverage (
+    country VARCHAR(256),
+    period VARCHAR(256),
+    UHC_index INTEGER,
+    UHC_class VARCHAR(256)
+);
+
+    COPY INTO bronze.upd_brnz_uhc_coverage
+    FROM (SELECT $1,$3,$4,
+        CASE
+            WHEN $4 BETWEEN 0 AND 49 THEN ''WEAK''
+            WHEN $4 BETWEEN 50 AND 79 THEN ''INTERMEDIATE''
+            WHEN $4 BETWEEN 80 AND 100 THEN ''HIGH''
+        END AS $5
+    FROM''@"PHARM_PROJECT"."BRONZE"."UPDATED_STG"/uhcCoverage_updated.csv'')
+    FILE_FORMAT = (FORMAT_NAME = ''bronze.csv_format'');
+
+    MERGE INTO bronze.brnz_uhc_coverage p 
+    USING(
+        SELECT 
+            *
+        FROM bronze.upd_brnz_uhc_coverage
+    ) u ON p.country= u.country
+        AND p.period = u.period
+        WHEN MATCHED THEN UPDATE SET
+            p.country = u.country,
+            p.period = u.period,
+            p.uhc_index = u.uhc_index,
+            p.uhc_class = u.uhc_class
+        WHEN NOT MATCHED THEN INSERT (
+            country,
+            period,
+            uhc_index,
+            uhc_class
+        )
+        VALUES (
+            u.country,
+            u.period,
+            u.uhc_index,
+            u.uhc_class
+        );
+    
+    
+    RETURN ''UPDATED DATA SUCCESFULLY LOADED'';
+    END;
+';
