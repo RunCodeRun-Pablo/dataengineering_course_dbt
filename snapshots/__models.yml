@@ -1,6 +1,6 @@
 version: 2
 
-models:
+snapshots:
   - name: drug_snp
     description: "snapshot for tracking changes in mkting_status"
     columns:
