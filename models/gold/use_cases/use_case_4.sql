@@ -44,7 +44,7 @@ LEFT JOIN ref_disease dis
     ON f.id_disease = dis.id_disease
 LEFT JOIN ref_type_disease td
     ON f.id_type_disease = td.id_type_disease
-WHERE f.country_disease_rank = 1 AND c.desc_country IN ('spain','united states of america')
+WHERE f.country_disease_rank = 1
 ORDER BY c.desc_country, p.desc_period DESC)
 
 SELECT * FROM numb_one_disease
