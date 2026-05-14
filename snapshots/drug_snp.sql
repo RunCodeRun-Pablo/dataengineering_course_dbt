@@ -1,7 +1,7 @@
 {% snapshot drug_snp%}
 
 {{config(
-    target_database='dev_intermediate_pharm',
+    target_database="{{ env_var('DBT_ENVIRONMENTS')}}_intermediate_pharm",
     target_schema='snapshots',
     unique_key='id_app_numb',
     strategy='check',
