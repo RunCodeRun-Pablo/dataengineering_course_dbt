@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: use_case_1
+    description: "Which disease has less treatments approved right now"
+
+
+  - name: use_case_2
+    description: "Which company has more treatments approved for each disease and who will benefit more"
+
+
+  - name: use_case_3
+    description: "which countries have more efficient health systems to develop clinical trials"
+
+
+  - name: use_case_4
+    description: "which disease is more frequent in each country per year"
+
+
+  - name: use_case_5
+    description: "within high health system countries, which are the most frequent diseases, and for this diseases which have more or less treatments as key diseases for R&D"
+
+
+  - name: use_case_6
+    description: "within recently approved drugs, which companies have recently approved drugs and for which diseases"
