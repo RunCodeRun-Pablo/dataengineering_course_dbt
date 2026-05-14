@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: drug_snp
+    description: "snapshot for tracking changes in mkting_status"
+    columns:
+      - name: id_app_numb
+        data_type: varchar
+        description: "unique id for FDA application, can be repeated if marketing status changes"
+
+      - name: app_numb
+        data_type: varchar
+        description: "desc of id_app_numb"
+
+      - name: sponsor_name
+        data_type: varchar
+        description: "company"
+
+      - name: drug_name
+        data_type: varchar
+        description: "drug"
+
+      - name: disease
+        data_type: varchar
+        description: "disease for which is intended to be used"
+
+      - name: mkting_status
+        data_type: varchar
+        description: "current marketing status"
+
+      - name: price_per_dose
+        data_type: float
+        description: "price of the dose"
+
+      - name: dbt_scd_id
+        data_type: varchar
+        description: ""
+
+      - name: dbt_updated_at
+        data_type: timestamp_ntz
+        description: ""
+
+      - name: dbt_valid_from
+        data_type: timestamp_ntz
+        description: ""
+
+      - name: dbt_valid_to
+        data_type: timestamp_ntz
+        description: ""
