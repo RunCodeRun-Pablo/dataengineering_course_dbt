@@ -34,6 +34,7 @@ LEFT JOIN ref_disease dis
     ON f.id_disease = dis.id_disease
 LEFT JOIN ref_sponsor sp
     ON f.id_sponsor = sp.id_sponsor
+WHERE dis.desc_disease != 'other'
 ORDER BY dis.desc_disease, rank_by_revenue)
 
 SELECT * FROM ranking_treatments_sponsor
