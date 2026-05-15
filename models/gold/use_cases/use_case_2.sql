@@ -23,10 +23,6 @@ ranking_treatments_sponsor AS (SELECT
     f.estimated_revenue_index,
     ROW_NUMBER() OVER (
         PARTITION BY f.id_disease
-        ORDER BY f.num_treatments DESC
-    )                       AS sponsor_rank_by_disease,
-    ROW_NUMBER() OVER (
-        PARTITION BY f.id_disease
         ORDER BY f.estimated_revenue_index DESC
     )                       AS rank_by_revenue
 FROM ref_drug f
@@ -35,6 +31,12 @@ LEFT JOIN ref_disease dis
 LEFT JOIN ref_sponsor sp
     ON f.id_sponsor = sp.id_sponsor
 WHERE dis.desc_disease != 'other'
-ORDER BY dis.desc_disease, rank_by_revenue)
+ORDER BY dis.desc_disease, rank_by_revenue),
 
-SELECT * FROM ranking_treatments_sponsor
+top_5 AS (
+
+    SELECT * FROM ranking_treatments_sponsor
+    WHERE rank_by_revenue BETWEEN 1 AND 5
+)
+
+SELECT * FROM top_5
