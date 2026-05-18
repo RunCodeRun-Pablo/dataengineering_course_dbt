@@ -32,7 +32,7 @@ joined AS (
     FROM ref_status r
     LEFT JOIN ref_mkting curr
         ON r.current_status = curr.id_mkting_status
-    LEFT JOIN ref_mkting prev                       -- ← doble join a la misma dim
+    LEFT JOIN ref_mkting prev                       
         ON r.previous_status = prev.id_mkting_status
     LEFT JOIN ref_sponsor sp
         ON r.id_sponsor = sp.id_sponsor
@@ -56,8 +56,8 @@ recently_approved AS (
 
 sponsor_disease_recently_approved AS (
     SELECT
-        desc_sponsor,
-        desc_disease,
+        sponsor,
+        disease,
         COUNT(*) AS new_treatments_per_disease
     FROM recently_approved
     GROUP BY desc_sponsor, desc_disease
