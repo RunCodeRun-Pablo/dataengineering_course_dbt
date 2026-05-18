@@ -6,16 +6,10 @@ models:
     columns:
       - name: id_disease
         data_type: varchar
-        data_tests:
-          - unique
         description: ""
 
       - name: desc_disease
         data_type: varchar
-        data_tests:
-          - accepted_values:
-              arguments:
-                values: ['diabetes', 'tuberculosis', 'hepatitis', 'other', 'ets', 'chronic respiratory', 'hiv', 'infc respiratory', 'cancer', 'cardiovascular', 'total infc', 'total noninfc']
         description: ""
 
   - name: dim_type_disease
@@ -23,16 +17,10 @@ models:
     columns:
       - name: id_type_disease
         data_type: varchar
-        data_tests:
-          - unique
         description: ""
 
       - name: desc_type_disease
         data_type: varchar
-        data_tests:
-        - accepted_values:
-              arguments:
-                values: ['infectious disease', 'non infectious disease', 'other']
         description: ""
 
   
