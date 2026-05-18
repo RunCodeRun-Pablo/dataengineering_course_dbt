@@ -6,8 +6,6 @@ snapshots:
     columns:
       - name: id_app_numb
         data_type: varchar
-        data_tests:
-          - unique
         description: "unique id for FDA application, can be repeated if marketing status changes"
 
       - name: app_numb
@@ -42,6 +40,8 @@ snapshots:
 
       - name: dbt_scd_id
         data_type: varchar
+        data_tests:
+          - unique
         description: ""
 
       - name: dbt_updated_at
