@@ -56,8 +56,8 @@ recently_approved AS (
 
 sponsor_disease_recently_approved AS (
     SELECT
-        sponsor,
-        disease,
+        desc_sponsor AS sponsor,
+        desc_disease AS disease,
         COUNT(*) AS new_treatments_per_disease
     FROM recently_approved
     GROUP BY desc_sponsor, desc_disease
