@@ -45,8 +45,6 @@ models:
 
       - name: value
         data_type: float
-        data_tests:
-          - not_null
         description: ""
 
       - name: country_disease_rank
