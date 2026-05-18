@@ -11,6 +11,28 @@ models:
       - name: desc_sponsor
         data_type: varchar
         description: ""
+
+  - name: dim_drug_name
+    description: "drug_name dimension"
+    columns:
+      - name: id_drug_name
+        data_type: varchar
+        description: ""
+
+      - name: desc_drug_name
+        data_type: varchar
+        description: ""
+  
+  - name: dim_mkting_status
+    description: "mkting_status dimension"
+    columns:
+      - name: id_mkting_status
+        data_type: varchar
+        description: ""
+
+      - name: desc_mkting_status
+        data_type: varchar
+        description: ""
         
   - name: fct_drug
     description: "Helps in calculating which disease has less treatments available and which company would get more benefit from a specific disease"

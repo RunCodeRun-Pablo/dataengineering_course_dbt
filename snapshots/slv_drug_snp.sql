@@ -1,23 +1,18 @@
+{% snapshot slv_drug_snp%}
+
 {{config(
-    materialized='incremental',
-    incremental_strategy='merge',
-    unique_key='id_app_numb'
+    target_database=env_var('DBT_ENVIRONMENTS') ~ '_silver_pharm',
+    target_schema='snapshots',
+    unique_key='id_app_numb',
+    strategy='check',
+    check_cols=['id_mkting_status', 'price_per_dose']
 )}}
 
-with 
-    
-source as (
-
-    select * from {{ source('bronze_data', 'brnz_drug_pre') }}
-    
-    {% if is_incremental() %}
-    WHERE loaded_at > (SELECT MAX(loaded_at) FROM {{ this }})
-    {% endif %}
-    
+WITH src AS (
+    SELECT * FROM {{ source('bronze_data', 'brnz_drug_pre') }}
 ),
 
-slv_drug AS (
-    
+transf_columns AS (
     SELECT
         LOWER(app_numb::VARCHAR(256))      AS app_numb,
         LOWER(sponsor_name::VARCHAR(256))  AS sponsor_name,
@@ -26,20 +21,22 @@ slv_drug AS (
         LOWER(mkting_status::VARCHAR(256)) AS mkting_status,
         price_per_dose::FLOAT4      AS price_per_dose,
         loaded_at::TIMESTAMP_LTZ AS loaded_at
-    FROM source
+    FROM src
 ),
 
-slv_drug_id AS (
+column_id AS(
     SELECT
         {{dbt_utils.generate_surrogate_key(['app_numb','drug_name'])}} AS id_app_numb,
         app_numb,
         {{dbt_utils.generate_surrogate_key(['sponsor_name'])}} AS id_sponsor,
         {{dbt_utils.generate_surrogate_key(['drug_name'])}} AS id_drug_name,
         {{dbt_utils.generate_surrogate_key(['disease'])}} AS id_disease,
+        {{dbt_utils.generate_surrogate_key(['mkting_status'])}} AS id_mkting_status,
         price_per_dose,
         loaded_at
-    FROM slv_drug
-    WHERE mkting_status IN ('prescription','over-the-counter')
+    FROM transf_columns
 )
 
-SELECT * FROM slv_drug_id
+SELECT * FROM column_id
+
+{% endsnapshot %}
