@@ -1,7 +1,7 @@
 version: 2
 
 snapshots:
-  - name: drug_snp
+  - name: slv_drug_snp
     description: "snapshot for tracking changes in mkting_status"
     columns:
       - name: id_app_numb
