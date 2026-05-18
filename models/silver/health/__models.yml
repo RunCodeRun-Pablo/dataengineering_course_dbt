@@ -50,10 +50,6 @@ models:
 
       - name: desc_uhc_class
         data_type: varchar
-        data_tests:
-          - accepted_values:
-              arguments:
-                values: ['INTERMEDIATE', 'HIGH', 'WEAK']
         description: "UHC class description"
 
   - name: slv_uhc_index

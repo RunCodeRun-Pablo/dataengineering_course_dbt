@@ -52,5 +52,9 @@ models:
 
       - name: uhc_class
         data_type: varchar
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['INTERMEDIATE', 'HIGH', 'WEAK']
         description: "class according to uhc_index"
 
