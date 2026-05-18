@@ -14,38 +14,6 @@ models:
         data_type: varchar
         description: "description of drug name"
 
-  - name: slv_drug
-    description: "table including prices per drug and applications"
-    columns:
-      - name: id_app_numb
-        data_type: varchar
-        data_tests:
-          - not_null
-          - unique
-        description: "application identifier"
-
-      - name: app_numb
-        data_type: varchar
-        description: "application number"
-
-      - name: id_sponsor
-        data_type: varchar
-        description: "sponsor identifier"
-
-      - name: id_drug_name
-        data_type: varchar
-        description: "drug name identifier"
-
-      - name: id_disease
-        data_type: varchar
-        description: "specific FDA application disease intended use"
-
-      - name: price_per_dose
-        data_type: float
-        data_tests:
-          - not_null
-        description: "price per drug dose"
-
   - name: slv_sponsor
     description: ""
     columns:
@@ -58,3 +26,17 @@ models:
       - name: desc_sponsor
         data_type: varchar
         description: "sponsor description"
+
+
+  - name: slv_mkting_status
+    description: ""
+    columns:
+      - name: id_mkting_status
+        data_type: varchar
+        data_tests:
+          - unique
+        description: "mkting_status identifier"
+
+      - name: desc_mkting_status
+        data_type: varchar
+        description: "mkting_status description"

@@ -6,31 +6,39 @@ snapshots:
     columns:
       - name: id_app_numb
         data_type: varchar
+        data_tests:
+          - unique
         description: "unique id for FDA application, can be repeated if marketing status changes"
 
       - name: app_numb
         data_type: varchar
         description: "desc of id_app_numb"
 
-      - name: sponsor_name
+      - name: id_sponsor
         data_type: varchar
         description: "company"
 
-      - name: drug_name
+      - name: id_drug_name
         data_type: varchar
         description: "drug"
 
-      - name: disease
+      - name: id_disease
         data_type: varchar
         description: "disease for which is intended to be used"
 
-      - name: mkting_status
+      - name: id_mkting_status
         data_type: varchar
         description: "current marketing status"
 
       - name: price_per_dose
         data_type: float
+        data_tests:
+          - not_null
         description: "price of the dose"
+
+      - name: loaded_at
+        data_type: timestamp
+        description: "date when data load occured"
 
       - name: dbt_scd_id
         data_type: varchar

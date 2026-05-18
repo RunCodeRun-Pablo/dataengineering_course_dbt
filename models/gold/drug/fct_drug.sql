@@ -1,6 +1,12 @@
-WITH ref AS (
+WITH ref_drug AS (
 
-    SELECT * FROM {{ref("slv_drug")}}
+    SELECT * FROM {{ref("slv_drug_snp")}}
+
+),
+
+ref_mkting AS (
+    
+    SELECT * FROM {{ref("slv_mkting_status")}}
 
 ),
 
@@ -11,7 +17,10 @@ ref_clean AS (
         id_disease,
         id_sponsor,
         price_per_dose
-    FROM ref 
+    FROM ref_drug r
+    LEFT JOIN ref_mkting m
+    ON r.id_mkting_status = m.id_mkting_status
+    WHERE m.desc_mkting_status IN ('over-the-counter','prescription')
 ),
 
 

@@ -1,33 +1,17 @@
 WITH ref AS (
 
-    SELECT * FROM {{ ref('drug_snp') }}
-
-),
-
-ref_desc AS (
-
-    SELECT 
-        {{dbt_utils.generate_surrogate_key(['app_numb','drug_name'])}} AS id_app_numb,
-        app_numb,
-        sponsor_name,
-        drug_name,
-        disease,
-        mkting_status,
-        dbt_valid_from,
-        dbt_valid_to
-    FROM ref r
+    SELECT * FROM {{ ref('slv_drug_snp') }}
 
 ),
 
 status_history AS (
     SELECT
         id_app_numb,
-        app_numb,
-        sponsor_name,
-        drug_name,
-        disease,
-        mkting_status AS current_status,
-        LAG(mkting_status) OVER (
+        id_sponsor,
+        id_drug_name,
+        id_disease,
+        id_mkting_status AS current_status,
+        LAG(id_mkting_status) OVER (
             PARTITION BY id_app_numb
             ORDER BY dbt_valid_from
         ) AS previous_status,
@@ -37,7 +21,7 @@ status_history AS (
             WHEN dbt_valid_to IS NULL THEN 'active'
             ELSE 'historical'
         END AS row_status
-    FROM ref_desc
+    FROM ref
 )
 
 SELECT * FROM status_history
