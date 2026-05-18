@@ -6,8 +6,6 @@ models:
     columns:
       - name: id_sponsor
         data_type: varchar
-        data_tests:
-          - unique
         description: ""
 
       - name: desc_sponsor

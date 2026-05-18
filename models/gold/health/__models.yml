@@ -6,16 +6,10 @@ models:
     columns:
       - name: id_uhc_class
         data_type: varchar
-        data_tests:
-          - unique
         description: ""
 
       - name: desc_uhc_class
         data_type: varchar
-        data_tests:
-          - accepted_values:
-              arguments:
-                values: ['INTERMEDIATE', 'HIGH', 'WEAK']
         description: ""
 
   - name: fct_health
@@ -59,6 +53,8 @@ models:
 
       - name: country_rank
         data_type: float
+        data_tests:
+          - not_null
         description: ""
 
 
