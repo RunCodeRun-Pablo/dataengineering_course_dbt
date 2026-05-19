@@ -45,7 +45,7 @@ Rest of the project was done in dbt and can be found in the rest of the folders.
 
 For each of the lineages the diagram for the distinct layers can be found in the following image (from top to bottom: lineage health; lineage disease; lineage drug):
 
-<img width="1624" height="2944" alt="Lineages relationships" src="https://github.com/user-attachments/assets/7b15cec3-cb62-4e10-92a6-e7acb9da1677" />
+<img width="1624" height="3008" alt="Lineages relationships" src="https://github.com/user-attachments/assets/8bb0fc9e-1192-4866-bc5c-e30213e29a51" />
 
 Additionally, in slides folder a .pdf file named "presentacion_proyecto.pdf" can be found with a short presentation and description about the main characteristics of the project.
 
