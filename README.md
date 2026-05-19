@@ -35,10 +35,17 @@ Rest of the project was done in dbt and can be found in the rest of the folders.
       -  Silver: normalized models before arriving to gold
       -  Gold: with distinct fct and dim tables
       
-    Overall, within each folder data was grouped according to the origin table or tables:
+    Overall, within each folder data was grouped according to the origin table or tables (which I will refer later as lineages):
     
       -  Health: tables comming from medicalDoctors.csv, pharmacists.csv and uhcCoverage.csv
       -  Drug: tables coming from FDA_drugs.csv
       -  Disease: tables coming from infc_diseases.csv and non_infc_diseases.csv
       
     More information about each model can be found in each of this folders within the corresponding __model.yml file
+
+For each of the lineages the diagram for the distinct layers can be found in the following image (from top to bottom: lineage health; lineage disease; lineage drug):
+
+<img width="1624" height="2944" alt="Lineages relationships" src="https://github.com/user-attachments/assets/7b15cec3-cb62-4e10-92a6-e7acb9da1677" />
+
+Additionally, in slides folder a .pdf file named "presentacion_proyecto.pdf" can be found with a short presentation and description about the main characteristics of the project.
+
